@@ -19,7 +19,9 @@
     "react-native": "0.68.2",
     "react-native-paper": "^4.12.1",
     "react-native-web": "0.17.7",
-    "twrnc": "^3.3.2"
+    "twrnc": "^3.3.2",
+    "webpack-dev-server": "~3.11.0",
+    "@expo/webpack-config": "~0.16.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
