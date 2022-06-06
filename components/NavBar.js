@@ -4,8 +4,11 @@ import tw from 'twrnc'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
-const NavBar = ({navigation}) => {
+const NavBar = () => {
+  const navigation = useNavigation()
+
   return (
     <View style={tw`w-full h-15 flex-row flex justify-between`}>
       <Button onPress={() => navigation.navigate('Home')} >
