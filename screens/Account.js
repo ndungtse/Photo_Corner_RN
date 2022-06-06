@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import NavBar from '../components/NavBar';
 
-const Account = () => {
+const Account = ({navigation}) => {
   return (
     <View>
       <Text>Account</Text>
+      <NavBar navigation={navigation} />
     </View>
   )
 }

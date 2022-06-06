@@ -2,15 +2,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import NavBar from '../components/NavBar';
 
-const Notification = ({navigation}) => {
+const Post = ({navigation}) => {
   return (
     <View>
-      <Text>Notification</Text>
+      <Text>Post</Text>
       <NavBar navigation={navigation} />
     </View>
   )
 }
 
-export default Notification
+export default Post
 
 const styles = StyleSheet.create({})
