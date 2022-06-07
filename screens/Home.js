@@ -4,6 +4,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome'
 import NavBar from '../components/NavBar';
 import tw from 'twrnc'
 import Stories from '../components/Home/Stories';
+import Post from '../components/Home/Post';
 
 const Home = () => {
   return (
@@ -12,8 +13,10 @@ const Home = () => {
           <Text style={tw`text-xl font-semibold`}>Photo Corner</Text>
           <FontAwesome name='search' style={tw`text-xl rounded-xl px-2 py-1 bg-slate-200`} />
       </View>
-      <View style={tw`h-[85%] w-full flex flex-col`}>
+      <View style={tw`h-[85%] overflow-auto w-full flex flex-col`}>
         <Stories />
+        <Post />
+        {/* <Post /> */}
       </View>
       <NavBar />
     </View>

@@ -10,7 +10,7 @@ const NavBar = () => {
   const navigation = useNavigation()
 
   return (
-    <View style={tw`w-full h-15 flex-row flex justify-between`}>
+    <View style={styles.nav}>
       <Button onPress={() => navigation.navigate('Home')} >
           <Ionicons name='home' style={tw`text-2xl`} />
       </Button>
@@ -32,4 +32,17 @@ const NavBar = () => {
 
 export default NavBar
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  nav:{
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    borderTopWidth: 0.1,
+    justifyContent: 'center',
+    borderColor: '#10151f34',
+    height: 60,
+    alignItems: 'center',
+    // position: 'sticky',
+    // bottom: 0
+  }
+})
