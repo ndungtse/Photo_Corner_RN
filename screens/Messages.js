@@ -3,7 +3,6 @@ import React from 'react'
 import NavBar from '../components/NavBar';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import tw from 'twrnc'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 
 const Messages = () => {
   return (
