@@ -8,12 +8,21 @@ const userSlice = createSlice({
         token: null,
         error: false,
         status: '',
+        isFetching: false,
     },
     reducers: {
+        loginStart: (state) => {
+            state.isFetching = true;
+        },
         login: (state, action) => {
             state.isLoggedIn = true;
             state.currentUser = action.payload;
             state.token = action.payload.token;
+        },
+        loginFailure:(state, action) => {
+            state.error = true;
+            state.status = action.payload;
+            state.isFetching = false;
         },
         logout: (state) => {
             state.isLoggedIn = false;
@@ -23,6 +32,6 @@ const userSlice = createSlice({
     }
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, loginFailure,loginStart } = userSlice.actions;
 
 export default userSlice.reducer;
