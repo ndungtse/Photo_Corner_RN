@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import NavBar from '../components/NavBar';
@@ -13,11 +13,12 @@ const Home = () => {
           <Text style={tw`text-xl font-semibold`}>Photo Corner</Text>
           <FontAwesome name='search' style={tw`text-xl rounded-xl px-2 py-1 bg-slate-200`} />
       </View>
-      <View style={tw`h-[85%] overflow-auto w-full flex flex-col`}>
+      <ScrollView showsVerticalScrollIndicator={false}
+      style={tw`h-[85%] w-full flex flex-col`}>
         <Stories />
         <Post />
-        {/* <Post /> */}
-      </View>
+        <Post />
+      </ScrollView>
       <NavBar />
     </View>
   )

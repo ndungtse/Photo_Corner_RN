@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native';
 import tw from 'twrnc'
@@ -7,7 +7,8 @@ import AntDesign from '@expo/vector-icons/AntDesign'
 
 const Stories = () => {
   return (
-    <View style={tw`w-full overflow-hidden flex flex-row`}>
+    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
+     style={tw`w-full flex flex-row`}>
       <View style={tw`flex flex-col items-center`}>
         <TouchableOpacity style={tw`rounded-xl justify-center flex items-center w-[15] h-[15] border-2 border-blue-800 p-4 py-5`}>
           <View style={tw` flex items-center justify-center p-3`}>
@@ -22,7 +23,7 @@ const Stories = () => {
       <Story />
       <Story />
       <Story />
-    </View>
+    </ScrollView>
   )
 }
 
