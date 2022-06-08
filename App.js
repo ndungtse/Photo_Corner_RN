@@ -23,7 +23,7 @@ export default function App() {
     <Provider store={store}>
       <AppProvider>
         <NavigationContainer>
-          <stack.Navigator initialRouteName={!isLoggedIn?'Chat':'Login'} >
+          <stack.Navigator initialRouteName={isLoggedIn?'Home':'Login'} >
             <stack.Screen name="Home" component={Home}
             options={{
               headerShown: false

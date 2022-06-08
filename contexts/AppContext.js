@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AppContext = createContext()
 
+export const api = "https://photocorner33.herokuapp.com"
+
 export const useAppContext = () => useContext(AppContext)
 
 export function AppProvider({children}) {

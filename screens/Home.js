@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import NavBar from '../components/NavBar';
 import tw from 'twrnc'
@@ -7,6 +7,17 @@ import Stories from '../components/Home/Stories';
 import Post from '../components/Home/Post';
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = async()=>{
+    try {
+      
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
   return (
     <View style={tw`px-3 pt-4 w-full h-full justify-between`}>
       <View style={styles.search}>
