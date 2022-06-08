@@ -1,5 +1,9 @@
 import {useState, useEffect, useContext, createContext} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLocal } from './hooks/useLocal';
+import { useDispatch } from 'react-redux';
+import { authorize } from './Redux/userSlice';
+
 
 const AppContext = createContext()
 
@@ -9,6 +13,7 @@ export const useAppContext = () => useContext(AppContext)
 
 export function AppProvider({children}) {
     const [dark, setDark] = useState(false)
+    const dispatch = useDispatch()
 
     const saveTheme = async() => {
         if (dark) {
@@ -27,9 +32,18 @@ export function AppProvider({children}) {
         }
     }
 
+    const getSavedToken = async() => {
+        console.log('token');
+        const token = await AsyncStorage.getItem('token')
+        if (token) {
+            dispatch(authorize(token))
+        }
+    }
+
     useEffect(() => {
         getSavedTheme()
-    }, [])
+        getSavedToken()
+    },[])
 
     useEffect(() => {
         saveTheme()

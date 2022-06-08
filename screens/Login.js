@@ -25,7 +25,6 @@ const Login = () => {
       }
     }
   }
-
   return (
     <View style={tw`p-2 flex flex-col items-center justify-center h-full`}>
 

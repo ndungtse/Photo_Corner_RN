@@ -28,10 +28,14 @@ const userSlice = createSlice({
             state.isLoggedIn = false;
             state.currentUser = null;
             state.token = null;
+        },
+        authorize: (state, action) => {
+            state.token = action.payload;
+            state.isLoggedIn = true;
         }
     }
 });
 
-export const { login, logout, loginFailure,loginStart } = userSlice.actions;
+export const { login, logout, loginFailure,loginStart, authorize } = userSlice.actions;
 
 export default userSlice.reducer;
