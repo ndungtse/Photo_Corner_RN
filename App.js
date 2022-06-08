@@ -11,6 +11,7 @@ import Post from './screens/Post';
 import { AppProvider } from './contexts/AppContext';
 import { store } from './contexts/Redux/store';
 import { Provider } from 'react-redux';
+import Chat from './screens/Chat';
 
 
 const stack = createNativeStackNavigator();
@@ -48,6 +49,10 @@ export default function App() {
               headerShown: false
             }} />
             <stack.Screen name="Signup" component={Signup} 
+            options={{
+              headerShown: false
+            }}/>
+            <stack.Screen name="Chat" component={Chat} 
             options={{
               headerShown: false
             }}/>
