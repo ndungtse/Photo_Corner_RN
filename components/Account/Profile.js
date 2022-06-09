@@ -34,9 +34,9 @@ const Profile = () => {
       </View>
       <View style={tw`flex-row items-center justify-between mt-3`}>
           <View style={tw`flex-row`}>
-            <Text style={tw`font-bold text-xl border-b-2 py-1`}>Posts</Text>
-            <Text style={tw`font-bold ml-2 text-xl  py-1`}>Status</Text>
-            <Text style={tw`font-bold ml-2 text-xl  py-1`}>Media</Text>
+            <Text style={tw`font-semibold text-lg border-b-2 py-1`}>Posts</Text>
+            <Text style={tw`font-semibold ml-2 text-lg  py-1`}>Status</Text>
+            <Text style={tw`font-semibold ml-2 text-lg  py-1`}>Media</Text>
           </View>
           <Feather name="grid" size={24} color="black" />
       </View>
