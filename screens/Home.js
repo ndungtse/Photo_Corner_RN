@@ -25,7 +25,7 @@ const Home = () => {
           <FontAwesome name='search' style={tw`text-xl rounded-xl px-2 py-1 bg-slate-200`} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}
-      style={tw`h-[85%] w-full flex flex-col`}>
+         style={tw`h-[85%] w-full flex flex-col`}>
         <Stories />
         <Post />
         <Post />
