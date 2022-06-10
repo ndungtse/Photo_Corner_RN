@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, Image, Button } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, CheckBox, TouchableOpacity  } from 'react-native'
 import React, { useState } from 'react'
 import tw from 'twrnc'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { Checkbox, TextInput } from 'react-native-paper';
-import { CheckBox, TouchableOpacity } from 'react-native-web';
 import regUser from '../contexts/api/Signup';
 import { useNavigation } from '@react-navigation/native';
 

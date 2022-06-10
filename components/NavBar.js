@@ -5,9 +5,11 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { useAppContext } from '../contexts/AppContext';
 
 const NavBar = () => {
   const navigation = useNavigation()
+  const { isWantToPost, setIsWantToPost } = useAppContext()
 
   return (
     <View style={styles.nav}>

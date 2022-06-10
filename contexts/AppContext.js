@@ -12,7 +12,9 @@ export const api = "https://photocorner33.herokuapp.com"
 export const useAppContext = () => useContext(AppContext)
 
 export function AppProvider({children}) {
-    const [dark, setDark] = useState(false)
+    const [dark, setDark] = useState(false);
+    const [isWantToPost, setIsWantToPost] = useState(false);
+
     const dispatch = useDispatch()
 
     const saveTheme = async() => {
@@ -50,7 +52,7 @@ export function AppProvider({children}) {
     }, [dark])
    
     return(
-        <AppContext.Provider value={{dark, setDark}}>
+        <AppContext.Provider value={{dark, setDark, isWantToPost, setIsWantToPost}}>
             {children}
         </AppContext.Provider>
     )
