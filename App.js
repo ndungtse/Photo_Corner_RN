@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Notification from './screens/Notification';
+import Notifications from './screens/Notifications';
 import Messages from './screens/Messages';
 import Account from './screens/Account';
 import Signup from './screens/Signup';
@@ -23,7 +23,7 @@ export default function App() {
     <Provider store={store}>
       <AppProvider>
         <NavigationContainer>
-          <stack.Navigator initialRouteName={!isLoggedIn?'Home':'Login'} >
+          <stack.Navigator initialRouteName={!isLoggedIn?'Notifications':'Login'} >
             <stack.Screen name="Home" component={Home}
             options={{
               headerShown: false
@@ -36,7 +36,7 @@ export default function App() {
             options={{
               headerShown: false
             }} />
-            <stack.Screen name="Notifications" component={Notification} 
+            <stack.Screen name="Notifications" component={Notifications} 
             options={{
               headerShown: false
             }} />
