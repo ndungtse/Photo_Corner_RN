@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import tw from 'twrnc'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Recent from '../components/Messages/Recent';
+import { StatusBar } from 'expo-status-bar';
 
 const Messages = () => {
   return (
@@ -18,7 +19,7 @@ const Messages = () => {
       </View>
       <KeyboardAvoidingView style={tw`flex rounded-xl w-full mt-3 p-2 bg-slate-100 flex-row items-center`}>
         <FontAwesome5 name="search" size={17} color="black" />
-        <TextInput style={tw`w-full px-2 text-lg font-semibold`} />
+        <TextInput style={tw`w-full text-black px-2 text-lg font-semibold`} />
       </KeyboardAvoidingView>
       <ScrollView showsVerticalScrollIndicator={false}
         style={tw`h-[75%] w-full flex flex-col`}>
@@ -36,6 +37,7 @@ const Messages = () => {
         <Recent />
       </ScrollView>
       <NavBar />
+      <StatusBar style="light" />
     </View>
   )
 }
@@ -48,7 +50,7 @@ const QuickChat = ()=>{
     <View style={tw`flex flex-col items-center`}>
       <TouchableOpacity style={tw`rounded-xl ml-3 justify-center flex items-center w-[15] h-[15] border-2 border-blue-800 p-[0.6]`}>
           <View style={tw` rounded-xl flex items-center justify-center w-full h-full`}>
-            <Image style={tw`min-h-full min-w-full`} source={require('../assets/land.png')} />
+            <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../assets/land.png')} />
           </View>
       </TouchableOpacity>
       <Text>Jessica</Text>

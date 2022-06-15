@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import tw from 'twrnc'
 import Stories from '../components/Home/Stories';
 import Post from '../components/Home/Post';
+import { StatusBar } from 'expo-status-bar';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -31,6 +32,7 @@ const Home = () => {
         <Post />
       </ScrollView>
       <NavBar />
+      <StatusBar style="light" />
     </View>
   )
 }

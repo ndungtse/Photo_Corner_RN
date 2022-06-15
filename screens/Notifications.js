@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import tw from 'twrnc'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import Notification from '../components/Notifications/Notification';
+import { StatusBar } from 'expo-status-bar';
 
 const Notifications = () => {
   return (
@@ -35,6 +36,7 @@ const Notifications = () => {
         </View>
       </ScrollView>
       <NavBar />
+      <StatusBar style="light" />
     </View>
   )
 }

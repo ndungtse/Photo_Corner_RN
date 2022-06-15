@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import Profile from '../components/Account/Profile';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 const Account = () => {
   const navigation = useNavigation()
@@ -26,6 +27,7 @@ const Account = () => {
         <Profile />
       </ScrollView>
       <NavBar/>
+      <StatusBar style="light" />
     </View>
   )
 }

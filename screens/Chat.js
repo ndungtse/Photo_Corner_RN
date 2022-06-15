@@ -20,7 +20,7 @@ const Chat = () => {
          mt-3 justify-between bg-slate-200 py-2`}>
             <View style={tw` flex-row items-center`}>
                 <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
-                 <Image style={tw`min-h-full min-w-full`} source={require('../assets/land.png')} />
+                    <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../assets/land.png')} />
                 </View>
                 <View style={tw`flex ml-2 flex-col w-full`}>
                     <Text style={tw`font-semibold text-lg`}>Jessica</Text>
@@ -50,10 +50,10 @@ export default Chat
 const ChatRow = () => {
     return (
         <View style={tw`flex flex-row w-full`}>
-            <View style={tw`px-2 flex flex-row w-full mt-3 w-1/2 py-2`}>
-                <View style={tw`h-[10] w-[10] rounded-full border-2 border-blue-300`}>
-                 <Image style={tw`min-h-full rounded-full min-w-full`} source={require('../assets/land.png')} />
-                </View>
+            <View style={tw`px-2 flex flex-row mt-3 w-1/2 py-2`}>
+            <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
+                <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../assets/land.png')} />
+            </View>
                 <View style={tw`flex w-full ml-2 flex-col p-1 rounded-xl bg-blue-500`}>
                     <Text>Hey. How are you?eferffefrefeferfrefgerger</Text>
                 </View>

@@ -12,6 +12,7 @@ import { AppProvider } from './contexts/AppContext';
 import { store } from './contexts/Redux/store';
 import { Provider } from 'react-redux';
 import Chat from './screens/Chat';
+import React from 'react'
 
 
 const stack = createNativeStackNavigator();
@@ -23,7 +24,7 @@ export default function App() {
     <Provider store={store}>
       <AppProvider>
         <NavigationContainer>
-          <stack.Navigator initialRouteName={!isLoggedIn?'Notifications':'Login'} >
+          <stack.Navigator initialRouteName={!isLoggedIn?'Home':'Login'} >
             <stack.Screen name="Home" component={Home}
             options={{
               headerShown: false

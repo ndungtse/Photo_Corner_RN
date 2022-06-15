@@ -7,8 +7,10 @@ const Post = () => {
   return (
     <View style={styles.post}>
         <View style={tw`flex flex-row items-center justify-between`}>
-            <View style={tw`flex`}>
-                <Image source={require('../../assets/land.png')} />
+            <View style={tw`flex-row items-center`}>
+                <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
+                    <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../../assets/land.png')} />
+                </View>
                 <View style={tw`flex flex-col`}>
                     <Text style={tw`font-semibold`}>Priscillia Shane</Text>
                     <Text>@shanepriscillia</Text>
