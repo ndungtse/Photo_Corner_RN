@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import Profile from '../components/Account/Profile';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+import Post from './Post';
 
 const Account = () => {
   const navigation = useNavigation()
@@ -14,7 +15,7 @@ const Account = () => {
   return (
     <View style={tw`px-3 flex-col pt-4 w-full h-full justify-between`}>
       <ScrollView showsVerticalScrollIndicator={false}
-           style={tw`h-[85%] w-full relative flex flex-col`}>
+           style={tw`h-[85%] w-full relative flex bg-black `}>
         <View style={tw`w-full flex-col h-[50] relative`}>
           <Image style={tw`w-full h-full`} source={require('../assets/battle.jpg')} />
           <View style={tw`flex-row w-full px-3 top-5 justify-between absolute`}>

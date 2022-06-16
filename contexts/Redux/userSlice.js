@@ -31,7 +31,7 @@ const userSlice = createSlice({
         },
         authorize: (state, action) => {
             state.isLoggedIn = true;
-            state.token = action.payload;
+            state.currentUser = action.payload;
         }
     }
 });

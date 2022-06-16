@@ -7,10 +7,10 @@ import Post from '../Home/Post';
 
 const Profile = () => {
   return (
-    <View style={tw`w-full absolute top-[40] flex-col bg-slate-100 rounded-t-3xl p-3`}>
+    <View style={tw`w-full h-full  flex-col bg-slate-100 rounded-t-3xl p-3`}>
       <View style={tw`flex-row items-center`}>
-        <View style={tw`h-[15] w-[15] border-2 rounded-full`}>
-         <Image style={tw`min-h-full min-w-full`} source={require('../../assets/land.png')} />
+        <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
+         <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../../assets/land.png')} />
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
             <Text style={tw` font-bold`}>703</Text>
