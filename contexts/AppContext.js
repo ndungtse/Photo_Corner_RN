@@ -14,6 +14,8 @@ export const useAppContext = () => useContext(AppContext)
 export function AppProvider({children}) {
     const [dark, setDark] = useState(false);
     const [isWantToPost, setIsWantToPost] = useState(false);
+    const [isReady, setIsReady] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const dispatch = useDispatch()
 
@@ -31,14 +33,17 @@ export function AppProvider({children}) {
             setDark(true)
         } else {
             setDark(false)
+            console.log('light');
         }
     }
 
     const getSavedToken = async() => {
-        console.log('token');
         const token = await AsyncStorage.getItem('token')
         if (token) {
-            dispatch(authorize(token))
+            // dispatch(authorize(token))
+            setIsLoggedIn(true)
+            console.log('token', token);
+            setIsReady(true)
         }
     }
 
@@ -52,8 +57,8 @@ export function AppProvider({children}) {
     }, [dark])
    
     return(
-        <AppContext.Provider value={{dark, setDark, isWantToPost, setIsWantToPost}}>
-            {children}
+        <AppContext.Provider value={{dark, setDark, isWantToPost, isLoggedIn, setIsWantToPost}}>
+            {isReady&&children}
         </AppContext.Provider>
     )
 }

@@ -20,14 +20,14 @@ const Account = () => {
           <View style={tw`flex-row w-full px-3 top-5 justify-between absolute`}>
             <Feather name="camera" size={20} color="black" style={tw`bg-slate-200 rounded-lg p-1 px-[6]`} />
             <Entypo
-            onPress={()=> navigation.navigate("Login")}
+              onPress={()=> navigation.navigate("Login")}
              name="dots-three-vertical" size={20} color="black" style={tw`bg-slate-200 rounded-lg p-1 px-[6]`}/>
           </View>
         </View>
         <Profile />
       </ScrollView>
       <NavBar/>
-      <StatusBar style="light" />
+      <StatusBar style="light" hidden={true} />
     </View>
   )
 }

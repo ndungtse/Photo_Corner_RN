@@ -1,19 +1,31 @@
-import { StyleSheet, Text, View, Image, Button, CheckBox, TouchableOpacity  } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity  } from 'react-native'
 import React, { useState } from 'react'
 import tw from 'twrnc'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
-import { Checkbox, TextInput } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import regUser from '../contexts/api/Signup';
 import { useNavigation } from '@react-navigation/native';
+import { Checkbox, ActivityIndicator, Colors } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
 
 const Signup = () => {
   const [show, setShow]= useState(false)
-  const [check, setCheck] = useState(false)
+  const [checked, setChecked] = useState(false)
   const [data, setData] = useState({
     FullName: '', username:'',
     email: '', password: ''});
 
+    const dispatch = useDispatch()
     const navigation = useNavigation()
+
+    const signUser = async()=>{
+      if(!isFetching){
+        const isTrue = await regUser(dispatch, data)
+        if(isTrue) {
+          dispatch({type: 'LOGIN'})
+          navigation.navigate('Home')
+        }
+      }
+    }
 
   return (
     <View style={tw`p-2 flex flex-col items-center justify-center h-full`}>
@@ -45,13 +57,18 @@ const Signup = () => {
         onPress={()=> setShow(!show)} />}  />
 
       <View style={tw`w-4/5 mt-5 max-w-[100] flex flex-row items-start`}>
-         <CheckBox style={tw`mt-3 text-blue-600`} value={check} onValueChange={setCheck} />
+         <Checkbox style={tw`mt-3 text-blue-600`} status={checked ? 'checked' : 'unchecked'}
+             onPress={() => {
+            setChecked(!checked);
+          }} color={Colors.blue500}/>
          <Text style={tw`text-lg ml-2`}>I agree with Terms and conditions of photo corner</Text>
       </View>
       <TouchableOpacity
-        onPress={()=>regUser(data)}
-       style={tw`w-4/5 max-w-[100] text-white font-semibold text-xl p-2 rounded-md mt-4 bg-blue-600 flex items-center justify-center`}>
-        <Text style={tw`text-white text-xl font-semibold`}>Signup</Text>
+        onPress={()=>signUser()}
+        style={tw`w-4/5 max-w-[100] text-white font-semibold text-xl p-2 rounded-md mt-4 bg-blue-600 flex items-center justify-center`}>
+         {isFetching ? <ActivityIndicator animating={true} color={Colors.white} /> : (
+        <Text style={tw`text-white text-xl font-semibold`}>Login</Text>
+        )}
       </TouchableOpacity>
       <View style={tw`w-4/5 max-w-[100] mt-4 flex flex-row items-center`}>
          <Text style={tw`text-lg`}>Already have an Account?</Text>
