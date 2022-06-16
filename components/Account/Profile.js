@@ -4,8 +4,12 @@ import tw from 'twrnc'
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import Post from '../Home/Post';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
+  const user = useSelector(state => state.user.currentUser)
+  console.log('user', user);
+
   return (
     <View style={tw`w-full h-full  flex-col bg-slate-100 rounded-t-3xl p-3`}>
       <View style={tw`flex-row items-center`}>

@@ -1,23 +1,39 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import NavBar from '../components/NavBar';
 import tw from 'twrnc'
 import Stories from '../components/Home/Stories';
 import Post from '../components/Home/Post';
 import { StatusBar } from 'expo-status-bar';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const { token } = useSelector(state => state.user);
 
   const getPosts = async()=>{
-    try {
-      
-    } catch (error) {
-      console.log(error);
-    }
+    const res = await fetch(
+			"https://photocorner33.herokuapp.com/post/allPosts",
+			{
+				method: "GET",
+
+				headers: {
+					"Content-Type": "application/json",
+					token: "Bearer " + JSON.parse(token),
+				},
+			}
+		);
+
+    const data = await res.json();
+    console.log('data', data);
+    setPosts(data);
     
   }
+
+  useEffect(() => {
+    getPosts();
+    }, []);
 
   return (
     <View style={tw`px-3 pt-4 w-full h-full justify-between`}>

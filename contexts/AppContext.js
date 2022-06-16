@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getLocal } from './hooks/useLocal';
 import { useDispatch } from 'react-redux';
 import { authorize } from './Redux/userSlice';
+import jwtDecode from 'jwt-decode';
 
 
 const AppContext = createContext()
@@ -37,10 +38,20 @@ export function AppProvider({children}) {
         }
     }
 
+    const decodToken = (token)=>{
+        try{
+            const decoded = jwtDecode(token)
+            return decoded
+        }catch(err){
+            return null
+        }
+    }
+
     const getSavedToken = async() => {
         const token = await AsyncStorage.getItem('token')
         if (token) {
-            // dispatch(authorize(token))
+            const decoded = decodToken(token)
+            dispatch(authorize({decoded, token}))
             setIsLoggedIn(true)
             console.log('token', token);
             setIsReady(true)
