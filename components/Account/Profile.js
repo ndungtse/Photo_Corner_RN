@@ -26,7 +26,7 @@ const Profile = () => {
             <Text style={tw`text-sm`}>Followers</Text>
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
-            <Text style={tw`font-bold`}>12</Text>
+            <Text style={tw`font-bold`}>currentUser.followers</Text>
             <Text style={tw`text-sm`}>Following</Text>
         </View>
         <View style={tw`py-1 ml-3 bg-white rounded-lg flex-col items-center justify-center`}>

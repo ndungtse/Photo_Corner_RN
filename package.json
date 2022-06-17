@@ -30,7 +30,8 @@
     "webpack-dev-server": "~3.11.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@types/node": "^18.0.0"
   },
   "private": true
 }

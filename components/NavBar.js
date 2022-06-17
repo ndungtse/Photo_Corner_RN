@@ -36,7 +36,7 @@ const NavBar = () => {
 export default NavBar
 
 const styles = StyleSheet.create({
-  nav:{
+  nav: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
@@ -45,7 +45,5 @@ const styles = StyleSheet.create({
     borderColor: '#10151f34',
     height: 60,
     alignItems: 'center',
-    // position: 'sticky',
-    // bottom: 0
   }
 })
