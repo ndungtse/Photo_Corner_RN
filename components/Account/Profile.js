@@ -7,8 +7,9 @@ import Post from '../Home/Post';
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
-  const user = useSelector(state => state.user.currentUser)
-  console.log('user', user);
+  const { currentUser } = useSelector(state => state.user)
+  const { posts } = useSelector(state => state.post)
+  console.log(currentUser);
 
   return (
     <View style={tw`w-full h-full  flex-col bg-slate-100 rounded-t-3xl p-3`}>
@@ -33,7 +34,7 @@ const Profile = () => {
         </View>
       </View>
       <View style={tw`mt-2`}>
-        <Text style={tw`font-bold text-lg`}>Jessica Rira Ikutann</Text>
+        <Text style={tw`font-bold text-lg`}>{ currentUser.username }</Text>
         <Text style={tw`text-sm font-semibold`}>@riraikutann</Text>
       </View>
       <View style={tw`flex-row items-center justify-between mt-3`}>
@@ -44,7 +45,9 @@ const Profile = () => {
           </View>
           <Feather name="grid" size={24} color="black" />
       </View>
-      <Post />
+      {posts.map(post => (
+        <Post key={post._id} post={post} />
+      ))}
     </View>
   )
 }

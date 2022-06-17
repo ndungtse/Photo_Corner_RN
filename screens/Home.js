@@ -6,18 +6,19 @@ import tw from 'twrnc'
 import Stories from '../components/Home/Stories';
 import Post from '../components/Home/Post';
 import { StatusBar } from 'expo-status-bar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { pickPosts } from '../contexts/Redux/postSlice';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const { token } = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const getPosts = async()=>{
     const res = await fetch(
 			"https://photocorner33.herokuapp.com/post/allPosts",
 			{
 				method: "GET",
-
 				headers: {
 					"Content-Type": "application/json",
 					token: "Bearer " + JSON.parse(token),
@@ -26,9 +27,9 @@ const Home = () => {
 		);
 
     const data = await res.json();
-    console.log('data', data);
-    setPosts(data);
-    
+    console.log(data);
+    dispatch(pickPosts(data.posts));
+    setPosts(data.posts);
   }
 
   useEffect(() => {
@@ -44,8 +45,9 @@ const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}
          style={tw`h-[85%] w-full flex flex-col`}>
         <Stories />
-        <Post />
-        <Post />
+        {posts.map(post => (
+          <Post key={post._id} post={post} />
+        ))}
       </ScrollView>
       <NavBar />
       <StatusBar style="light" />

@@ -8,6 +8,7 @@ import Profile from '../components/Account/Profile';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import Post from './Post';
+import { useSelector } from 'react-redux';
 
 const Account = () => {
   const navigation = useNavigation()

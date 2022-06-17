@@ -6,6 +6,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useAppContext } from '../contexts/AppContext';
+import { Colors } from 'react-native-paper'
 
 const NavBar = () => {
   const navigation = useNavigation()
@@ -14,7 +15,7 @@ const NavBar = () => {
   return (
     <View style={styles.nav}>
       <Button onPress={() => navigation.navigate('Home')} >
-          <Ionicons name='home' style={tw`text-2xl`} />
+        <Ionicons name='home' style={tw`text-2xl`} />
       </Button>
         <Button onPress={() => navigation.navigate('Messages')} >
           <Ionicons name='chatbox' style={tw`text-2xl`} />

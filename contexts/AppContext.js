@@ -51,7 +51,7 @@ export function AppProvider({children}) {
         const token = await AsyncStorage.getItem('token')
         if (token) {
             const decoded = decodToken(token)
-            dispatch(authorize({decoded, token}))
+            dispatch(authorize({decoded: decoded.needed, token}))
             setIsLoggedIn(true)
             console.log('token', token);
             setIsReady(true)

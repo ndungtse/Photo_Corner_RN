@@ -3,7 +3,7 @@ import React from 'react'
 import tw from 'twrnc'
 import { Entypo } from '@expo/vector-icons';
 
-const Post = () => {
+const Post = ({post}) => {
   return (
     <View style={styles.post}>
         <View style={tw`flex flex-row items-center justify-between`}>
@@ -11,17 +11,17 @@ const Post = () => {
                 <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
                     <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../../assets/land.png')} />
                 </View>
-                <View style={tw`flex flex-col`}>
-                    <Text style={tw`font-semibold`}>Priscillia Shane</Text>
-                    <Text>@shanepriscillia</Text>
+                <View style={tw`flex ml-3 flex-col`}>
+                    <Text style={tw`font-semibold`}>{post.username}</Text>
+                    <Text>{post.created}</Text>
                 </View>
             </View>
             <Entypo name="dots-three-vertical" size={24} color="black" />
         </View>
         <View style={tw`flex flex-col mt-3`}>
-          <Text>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, ex? Obcaecati at voluptate reprehenderit recusandae ut, similique animi doloremque totam dolorem debitis tempore, quisquam magni molestias iusto quam qui exercitationem.</Text>
+          <Text>{post.caption}</Text>
           <Image style={tw`w-full h-[100] rounded-xl`}
-            source={require('../../assets/land.png')} />
+            source={{uri: post.secureUrl}} />
         </View>
     </View>
   )
