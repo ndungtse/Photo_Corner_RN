@@ -16,7 +16,7 @@ const userSlice = createSlice({
         },
         login: (state, action) => {
             state.isLoggedIn = true;
-            state.currentUser = action.payload;
+            state.currentUser = action.payload.user;
             state.token = action.payload.token;
         },
         loginFailure:(state, action) => {

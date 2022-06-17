@@ -20,7 +20,7 @@ const NavBar = () => {
         <Button onPress={() => navigation.navigate('Messages')} >
           <Ionicons name='chatbox' style={tw`text-2xl`} />
         </Button>
-        <Button onPress={() => navigation.navigate('Post')} >
+        <Button onPress={() => setIsWantToPost(true)} >
           <FontAwesome5 name='plus-square' style={tw`text-2xl`} />
         </Button>
         <Button onPress={() => navigation.navigate('Notifications')} >

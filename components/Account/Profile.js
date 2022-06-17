@@ -26,7 +26,7 @@ const Profile = () => {
             <Text style={tw`text-sm`}>Followers</Text>
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
-            <Text style={tw`font-bold`}>currentUser.followers</Text>
+            <Text style={tw`font-bold`}>{currentUser.following}</Text>
             <Text style={tw`text-sm`}>Following</Text>
         </View>
         <View style={tw`py-1 ml-3 bg-white rounded-lg flex-col items-center justify-center`}>
@@ -34,8 +34,8 @@ const Profile = () => {
         </View>
       </View>
       <View style={tw`mt-2`}>
-        <Text style={tw`font-bold text-lg`}>{ currentUser.username }</Text>
-        <Text style={tw`text-sm font-semibold`}>@riraikutann</Text>
+        <Text style={tw`font-bold text-lg`}>{ currentUser.fullname}</Text>
+        <Text style={tw`text-sm font-semibold`}>@{currentUser.username}</Text>
       </View>
       <View style={tw`flex-row items-center justify-between mt-3`}>
           <View style={tw`flex-row`}>

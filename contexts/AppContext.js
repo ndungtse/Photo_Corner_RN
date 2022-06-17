@@ -8,6 +8,15 @@ import jwtDecode from 'jwt-decode';
 
 const AppContext = createContext()
 
+export const decodToken = (token)=>{
+    try{
+        const decoded = jwtDecode(token)
+        return decoded
+    }catch(err){
+        return null
+    }
+}
+
 export const api = "https://photocorner33.herokuapp.com"
 
 export const useAppContext = () => useContext(AppContext)
@@ -34,28 +43,23 @@ export function AppProvider({children}) {
             setDark(true)
         } else {
             setDark(false)
-            console.log('light');
         }
     }
 
-    const decodToken = (token)=>{
-        try{
-            const decoded = jwtDecode(token)
-            return decoded
-        }catch(err){
-            return null
-        }
-    }
 
     const getSavedToken = async() => {
         const token = await AsyncStorage.getItem('token')
         if (token) {
-            const decoded = decodToken(token)
-            dispatch(authorize({decoded: decoded.needed, token}))
-            setIsLoggedIn(true)
-            console.log('token', token);
-            setIsReady(true)
+            try {
+                const decoded = decodToken(token)
+                dispatch(authorize({decoded: decoded.needed, token}))
+                setIsLoggedIn(true)
+            } catch (error) {
+                console.log(error)
+            
+            }
         }
+        setIsReady(true)
     }
 
     useEffect(() => {

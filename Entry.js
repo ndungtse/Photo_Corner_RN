@@ -7,7 +7,6 @@ import Account from './screens/Account';
 import Signup from './screens/Signup';
 import Login from './screens/Login';
 import Home from './screens/Home';
-import Post from './screens/Post';
 import { useAppContext } from './contexts/AppContext';
 import Chat from './screens/Chat';
 import React, { useEffect } from 'react'
@@ -30,10 +29,6 @@ export default function Entry() {
               headerShown: false
             }} />
             <stack.Screen name="Messages" component={Messages} 
-            options={{
-              headerShown: false
-            }} />
-            <stack.Screen name="Post" component={Post} 
             options={{
               headerShown: false
             }} />

@@ -2,11 +2,13 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 const Post = ({post}) => {
   return (
     <View style={styles.post}>
-        <View style={tw`flex flex-row items-center justify-between`}>
+        <View style={tw`flex px-2 flex-row items-center justify-between`}>
             <View style={tw`flex-row items-center`}>
                 <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
                     <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../../assets/land.png')} />
@@ -18,10 +20,18 @@ const Post = ({post}) => {
             </View>
             <Entypo name="dots-three-vertical" size={24} color="black" />
         </View>
-        <View style={tw`flex flex-col mt-3`}>
-          <Text>{post.caption}</Text>
-          <Image style={tw`w-full h-[100] rounded-xl`}
+        <View style={tw`flex px-1 flex-col mt-3`}>
+          <Text style={tw`px-1`}>{post.caption}</Text>
+          <Image style={tw`w-full h-[100]`}
             source={{uri: post.secureUrl}} />
+        </View>
+        <View style={tw`mt-3 flex-row items-center justify-between px-2`}>
+            <View style={tw`flex-row`}>
+                <AntDesign name="heart" size={24} color="black" />
+                <FontAwesome style={tw`ml-2`} name="comment" size={24} color="black" />
+                <Entypo style={tw`ml-2`} name="share" size={24} color="black" />
+            </View>
+            <FontAwesome name="bookmark" size={24} color="black" />
         </View>
     </View>
   )
@@ -35,9 +45,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         marginTop: 12,
-        borderWidth: 0.1,
-        padding: 10,
-        borderColor: '#10151f34',
-        // borderRadius: 10
+        borderWidth: 1,
+        paddingVertical: 10,
+        borderColor: '#7589e5',
     }
 })

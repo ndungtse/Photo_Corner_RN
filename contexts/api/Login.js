@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { api } from "../AppContext";
+import { api, decodToken } from "../AppContext";
 import { login, loginFailure, loginStart } from "../Redux/userSlice";
 
 
@@ -15,7 +15,8 @@ const loginUser = async (dispatch, loginData) => {
         })
         const data = await res.json();
         if (data.message==="Can continue") {
-            dispatch(login(data.token));
+            const token = decodToken(data.token);
+            dispatch(login({user: token.needed, token: data.token}));
             await AsyncStorage.setItem('token', JSON.stringify(data.token))
             return true;
         }else{
@@ -31,3 +32,5 @@ const loginUser = async (dispatch, loginData) => {
 }
 
 export default loginUser;
+
+
