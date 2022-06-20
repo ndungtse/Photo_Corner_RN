@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { KeyboardAvoidingView } from 'react-native-web';
 
 const Post = ({post}) => {
   return (
@@ -33,6 +35,12 @@ const Post = ({post}) => {
             </View>
             <FontAwesome name="bookmark" size={24} color="black" />
         </View>
+        <View style={tw`flex-row items-center w-full justify-between px-2`}>
+            <KeyboardAvoidingView>
+                <TextInput style={styles.input} placeholder="Add a comment..." />
+            </KeyboardAvoidingView>
+            <MaterialIcons style={tw`mt-3`} name="send" size={24} color="black" />
+        </View>
     </View>
   )
 }
@@ -48,5 +56,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingVertical: 10,
         borderColor: '#7589e5',
+    },
+    input:{
+        width: '90%',
+        borderWidth: 1,
+        borderRadius: 40,
+        marginTop: 10,
+        height: 40,
+        paddingHorizontal: 10,
     }
 })

@@ -13,7 +13,7 @@ const Notification = () => {
          <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../../assets/land.png')} />
         </View>
         <View style={tw`flex ml-2 flex-col w-4/5`}>
-            <Text style={tw`font-semibold text-md`}>Daria Salma mentioned you in a post.</Text>
+            <Text style={tw`font-semibold`}>Daria Salma mentioned you in a post.</Text>
             <Text>12 sec</Text>
         </View>
     </TouchableOpacity>

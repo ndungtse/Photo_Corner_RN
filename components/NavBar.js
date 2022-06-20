@@ -12,21 +12,26 @@ const NavBar = () => {
   const navigation = useNavigation()
   const { isWantToPost, setIsWantToPost } = useAppContext()
 
+  const navigate = (routeName) => {
+    setIsWantToPost(false)
+    navigation.navigate(routeName)
+  }
+
   return (
     <View style={styles.nav}>
-      <Button onPress={() => navigation.navigate('Home')} >
+      <Button onPress={() => navigate('Home')} >
         <Ionicons name='home' style={tw`text-2xl`} />
       </Button>
-        <Button onPress={() => navigation.navigate('Messages')} >
+        <Button onPress={() => navigate('Messages')} >
           <Ionicons name='chatbox' style={tw`text-2xl`} />
         </Button>
         <Button onPress={() => setIsWantToPost(true)} >
           <FontAwesome5 name='plus-square' style={tw`text-2xl`} />
         </Button>
-        <Button onPress={() => navigation.navigate('Notifications')} >
+        <Button onPress={() => navigate('Notifications')} >
           <FontAwesome5 name='bell' style={tw`text-2xl`} />
         </Button>
-        <Button onPress={() => navigation.navigate('Profile')} >
+        <Button onPress={() => navigate('Profile')} >
           <FontAwesome5 name='user' style={tw`text-2xl`} />
         </Button>
     </View>
