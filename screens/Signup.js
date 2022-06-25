@@ -5,7 +5,7 @@ import { TextInput } from 'react-native-paper';
 import regUser from '../contexts/api/Signup';
 import { useNavigation } from '@react-navigation/native';
 import { Checkbox, ActivityIndicator, Colors } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Signup = () => {
   const [show, setShow]= useState(false)
@@ -13,6 +13,7 @@ const Signup = () => {
   const [data, setData] = useState({
     FullName: '', username:'',
     email: '', password: ''});
+    const { status, error, isFetching } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
     const navigation = useNavigation()
@@ -21,8 +22,7 @@ const Signup = () => {
       if(!isFetching){
         const isTrue = await regUser(dispatch, data)
         if(isTrue) {
-          dispatch({type: 'LOGIN'})
-          navigation.navigate('Home')
+          navigation.navigate('Login')
         }
       }
     }
@@ -30,7 +30,7 @@ const Signup = () => {
   return (
     <View style={tw`p-2 flex flex-col items-center justify-center h-full`}>
       <Text style={tw`text-blue-500 text-2xl font-semibold`}>Join Photo Corner</Text>
-
+      {error && <Text style={tw`text-red-500 text-sm`}>{status}</Text>}
       <TextInput
         value={data.FullName}
         onChangeText={(text) => setData({...data, FullName: text})}
@@ -67,7 +67,7 @@ const Signup = () => {
         onPress={()=>signUser()}
         style={tw`w-4/5 max-w-[100] text-white font-semibold text-xl p-2 rounded-md mt-4 bg-blue-600 flex items-center justify-center`}>
          {isFetching ? <ActivityIndicator animating={true} color={Colors.white} /> : (
-        <Text style={tw`text-white text-xl font-semibold`}>Login</Text>
+        <Text style={tw`text-white text-xl font-semibold`}>Sign Up</Text>
         )}
       </TouchableOpacity>
       <View style={tw`w-4/5 max-w-[100] mt-4 flex flex-row items-center`}>

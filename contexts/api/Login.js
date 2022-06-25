@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 import { api, decodToken } from "../AppContext";
 import { login, loginFailure, loginStart } from "../Redux/userSlice";
 
@@ -24,7 +23,7 @@ const loginUser = async (dispatch, loginData) => {
             return false;
         }
     } catch (error) {
-        dispatch(loginFailure(error.message));
+        dispatch(loginFailure('Something went wrong'));
         console.log(error);
         return false;
     }

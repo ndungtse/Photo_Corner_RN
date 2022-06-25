@@ -34,6 +34,16 @@ export function MessageProvider({ children }) {
     getRelMessages();
   }, []);
 
+
+  const startChat = async (e) => {
+    await setRoom(e + user._id);
+    await setRoom1(user._id + e);
+    console.log(room);
+    await joinRoom(user.username, e+user._id);
+    await getRelMessages(e + user._id);
+    console.log('elleh');
+  };
+
   return (
     <MessageContext.Provider
       value={{
@@ -47,6 +57,7 @@ export function MessageProvider({ children }) {
         joinRoom,
         start,
         setStart,
+        startChat,
         getRelMessages
       }}
     >
