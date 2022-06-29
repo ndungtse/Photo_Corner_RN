@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "photo.corner"
+      "package": "com.photo.corner"
     },
     "web": {
       "favicon": "./assets/favicon.png"

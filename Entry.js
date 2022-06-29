@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Notifications from './screens/Notifications';
+import StoryPreview from './screens/StoryPreview';
 import Messages from './screens/Messages';
 import Account from './screens/Account';
 import Signup from './screens/Signup';
@@ -52,6 +53,10 @@ export default function Entry() {
             options={{
               headerShown: false
             }}/>
+            <stack.Screen name="storypreview" component={StoryPreview}
+            options={{
+              headerShown: false
+            }} />
           </stack.Navigator>
           <StatusBar style="auto" />
         </NavigationContainer>
