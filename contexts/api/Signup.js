@@ -1,4 +1,4 @@
-import { api } from "../AppContext";
+import { api } from "../AuthContext";
 import { signup, signupFailure, loginStart } from "../Redux/userSlice";
 
 const regUser = async(dispatch, regData) => {

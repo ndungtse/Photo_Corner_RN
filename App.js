@@ -1,4 +1,4 @@
-import { AuthProvider } from "./contexts/AuthContext";
+import AuthProvider from "./contexts/AuthContext";
 import { store } from "./contexts/Redux/store";
 import { Provider } from "react-redux";
 import React, { useEffect } from "react";

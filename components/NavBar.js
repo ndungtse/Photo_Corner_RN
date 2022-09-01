@@ -5,12 +5,12 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { useAppContext } from '../contexts/AppContext';
 import { Colors } from 'react-native-paper'
+import { usePosts } from '../contexts/PostContext';
 
 const NavBar = () => {
   const navigation = useNavigation()
-  const { isWantToPost, setIsWantToPost } = useAppContext()
+  const { isWantToPost, setIsWantToPost } = usePosts()
 
   const navigate = (routeName) => {
     setIsWantToPost(false)
