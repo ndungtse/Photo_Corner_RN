@@ -1,4 +1,4 @@
-import { AppProvider } from "./contexts/AppContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import { store } from "./contexts/Redux/store";
 import { Provider } from "react-redux";
 import React, { useEffect } from "react";
@@ -8,11 +8,11 @@ import { MessageProvider } from "./contexts/MessageContext";
 export default function App() {
 	return (
 		<Provider store={store}>
-			<AppProvider>
+			<AuthProvider>
 				<MessageProvider>
 					<Entry />
 				</MessageProvider>
-			</AppProvider>
+			</AuthProvider>
 		</Provider>
 	);
 }

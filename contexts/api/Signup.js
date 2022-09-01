@@ -4,13 +4,8 @@ import { signup, signupFailure, loginStart } from "../Redux/userSlice";
 const regUser = async(dispatch, regData) => {
     dispatch(loginStart());
     try {
-        const res = await fetch(`${api}/user/registerUser`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify(regData)
-        })
-        const data = await res.json();
+        const res = await api.post(`/user/registerUser`, regData);
+        const data = await res.data
         console.log(data);
         if (data.status === 201) {
             dispatch(signup());

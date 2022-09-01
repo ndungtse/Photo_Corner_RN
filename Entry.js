@@ -8,23 +8,23 @@ import Account from './screens/Account';
 import Signup from './screens/Signup';
 import Login from './screens/Login';
 import Home from './screens/Home';
-import { useAppContext } from './contexts/AppContext';
 import Chat from './screens/Chat';
 import React, { useEffect } from 'react'
+import { useAuth } from './contexts/AuthContext';
 
 
 const stack = createNativeStackNavigator();
 
 export default function Entry() {
-  const { isLoggedIn } = useAppContext();
+  const { user } = useAuth();
 
   useEffect(() => {
-    console.log('isLoggedIn', isLoggedIn);
-  }, [isLoggedIn]);
+    console.log('user', user);
+  }, [user]);
 
   return (
         <NavigationContainer>
-          <stack.Navigator initialRouteName={isLoggedIn?'Home':'Login'} >
+          <stack.Navigator initialRouteName={user?'Home':'Login'} >
             <stack.Screen name="Home" component={Home}
             options={{
               headerShown: false
