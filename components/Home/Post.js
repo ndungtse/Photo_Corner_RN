@@ -1,31 +1,46 @@
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import tw from 'twrnc'
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAvoidingView } from 'react-native-web';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Post = ({post}) => {
+    const [poster, setPoster] = useState(null)
+    const { user, getUserById} = useAuth()
+	const [postData, setPostData] = useState(post);
+
+    const handlePoster = async(id)=> {
+        const data = await getUserById(id);
+        setPoster(data)
+    }
+
+    useEffect(()=>{
+        handlePoster(postData.user);
+    },[post])
   return (
+    <>
+    {poster && (
     <View style={styles.post}>
         <View style={tw`flex px-2 flex-row items-center justify-between`}>
             <View style={tw`flex-row items-center`}>
                 <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
-                    <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={require('../../assets/land.png')} />
+                    <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={{uri: poster?.profile}} />
                 </View>
                 <View style={tw`flex ml-3 flex-col`}>
-                    <Text style={tw`font-semibold`}>{post.username}</Text>
-                    <Text>{post.created}</Text>
+                    <Text style={tw`font-semibold`}>{postData.username}</Text>
+                    <Text>{postData.created}</Text>
                 </View>
             </View>
             <Entypo name="dots-three-vertical" size={24} color="black" />
         </View>
         <View style={tw`flex px-1 flex-col mt-3`}>
-          <Text style={tw`px-1`}>{post.caption}</Text>
+          <Text style={tw`px-1`}>{postData.caption}</Text>
           <Image style={tw`w-full h-[100]`}
-            source={{uri: post.secureUrl}} />
+            source={{uri: postData.image_url}} />
         </View>
         <View style={tw`mt-3 flex-row items-center justify-between px-2`}>
             <View style={tw`flex-row`}>
@@ -42,6 +57,8 @@ const Post = ({post}) => {
             <MaterialIcons style={tw`mt-3`} name="send" size={24} color="black" />
         </View>
     </View>
+    )}
+    </>
   )
 }
 

@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 const Stories = () => {
   return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
+    <ScrollView horizontal={true}  showsHorizontalScrollIndicator={false}
      style={tw`w-full flex flex-row`}>
       <View style={tw`flex flex-col items-center`}>
         <TouchableOpacity style={tw`rounded-xl justify-center flex items-center w-[15] h-[15] border-2 border-blue-800`}>

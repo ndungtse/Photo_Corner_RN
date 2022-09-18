@@ -57,7 +57,7 @@ const Signup = () => {
         onPress={()=> setShow(!show)} />}  />
 
       <View style={tw`w-4/5 mt-5 max-w-[100] flex flex-row items-start`}>
-         <Checkbox style={tw`mt-3 text-blue-600`} status={checked ? 'checked' : 'unchecked'}
+         <Checkbox style={tw`mt-3 text-blue-`} status={checked ? 'checked' : 'unchecked'}
              onPress={() => {
             setChecked(!checked);
           }} color={Colors.blue500}/>

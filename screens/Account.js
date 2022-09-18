@@ -12,13 +12,14 @@ import { useSelector } from 'react-redux';
 
 const Account = () => {
   const navigation = useNavigation()
+  const user = useSelector(state => state.user.currentUser)
 
   return (
     <View style={tw`px-3 flex-col pt-4 w-full h-full justify-between`}>
       <ScrollView showsVerticalScrollIndicator={false}
            style={tw`h-[85%] w-full relative flex bg-black `}>
         <View style={tw`w-full flex-col h-[50] relative`}>
-          <Image style={tw`w-full h-full`} source={require('../assets/battle.jpg')} />
+          <Image style={tw`w-full h-full`} source={{uri: user.profile}} />
           <View style={tw`flex-row w-full px-3 top-5 justify-between absolute`}>
             <Feather name="camera" size={20} color="black" style={tw`bg-slate-200 rounded-lg p-1 px-[6]`} />
             <Entypo

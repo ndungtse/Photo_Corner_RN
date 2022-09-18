@@ -28,7 +28,6 @@ export const PostProvider = ({ children }) => {
 		);
 		const posts = await res.json();
 		setPosts(posts.posts.reverse());
-		// setLoader(false);
 		return posts;
 	};
 
