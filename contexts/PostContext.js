@@ -122,20 +122,23 @@ export const PostProvider = ({ children }) => {
 	}
 
 	const getLikesDataByPost = async (postID) => {
-
-		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/getLikesDataByPost/${postID}`,
-			{
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					authorization: "Bearer " + token,
-				},
-			}
-		);
-		const data = await res.json();
-		
-		return data;
+		try {
+			const res = await fetch(
+				`https://photocorner33.herokuapp.com/post/getLikesDataByPost/${postID}`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						authorization: "Bearer " + token,
+					},
+				}
+			);
+			const data = await res.json();
+			
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	const getLikesCountByPost = async (postID) => {

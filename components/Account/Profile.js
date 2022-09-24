@@ -9,16 +9,16 @@ import { useSelector } from 'react-redux';
 const Profile = () => {
   const { currentUser } = useSelector(state => state.user)
   const { posts } = useSelector(state => state.post)
-  console.log(currentUser);
+  console.log("user: ", currentUser);
 
   return (
-    <View style={tw`w-full h-full  flex-col bg-slate-100 rounded-t-3xl p-3`}>
+    <View style={tw`w-full h-full flex-col bg-slate-100 rounded-t-3xl p-3`}>
       <View style={tw`flex-row items-center`}>
         <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
          <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={{uri: currentUser.profile}} />
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
-            <Text style={tw` font-bold`}>703</Text>
+            <Text style={tw` font-bold`}>7</Text>
             <Text style={tw`text-sm`}>Posts</Text>
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>

@@ -10,10 +10,16 @@ import { usePosts } from '../contexts/PostContext';
 
 const Home = () => {
   const { posts, getPosts } = usePosts()
+  const [curPosts, setCurPosts] = useState(posts)
 
   useEffect(() => {
     if(posts.length === 0) getPosts();
     }, []);
+
+    useEffect(() => {
+      console.log(posts);
+      setCurPosts(posts)
+  }, [posts])
 
   return (
     <View style={tw`px-3 pt-4 w-full h-full justify-between`}>
@@ -24,7 +30,7 @@ const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}
          style={tw`h-[85%] w-full flex flex-col`}>
         <Stories />
-        {posts.map(post => (
+        {curPosts.map(post => (
           <Post key={post._id} post={post} />
         ))}
       </ScrollView>

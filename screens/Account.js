@@ -17,14 +17,14 @@ const Account = () => {
   return (
     <View style={tw`px-3 flex-col pt-4 w-full h-full justify-between`}>
       <ScrollView showsVerticalScrollIndicator={false}
-           style={tw`h-[85%] w-full relative flex bg-black `}>
+           style={tw`h-[85%] w-full relative flex`}>
         <View style={tw`w-full flex-col h-[50] relative`}>
-          <Image style={tw`w-full h-full`} source={{uri: user.profile}} />
+          <Image style={tw`w-full h-full`} source={{uri: user.cover}} />
           <View style={tw`flex-row w-full px-3 top-5 justify-between absolute`}>
-            <Feather name="camera" size={20} color="black" style={tw`bg-slate-200 rounded-lg p-1 px-[6]`} />
+            <Feather name="camera" size={20} color="black" style={tw`bg-slate-200/40 rounded-lg p-1 px-[6]`} />
             <Entypo
               onPress={()=> navigation.navigate("Login")}
-             name="dots-three-vertical" size={20} color="black" style={tw`bg-slate-200 rounded-lg p-1 px-[6]`}/>
+             name="dots-three-vertical" size={20} color="black" style={tw`bg-slate-200/40 rounded-lg p-1 px-[6]`}/>
           </View>
         </View>
         <Profile />
