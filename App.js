@@ -5,17 +5,23 @@ import React from "react";
 import Entry from "./Entry";
 import { MessageProvider } from "./contexts/MessageContext";
 import { PostProvider } from "./contexts/PostContext";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { UserProvider } from "./contexts/userContext";
 
 export default function App() {
 	return (
-		<Provider store={store}>
-			<AuthProvider>
-				<PostProvider>
-					<MessageProvider>
-						<Entry />
-					</MessageProvider>
-				</PostProvider>
-			</AuthProvider>
-		</Provider>
+		<SafeAreaProvider>
+			<Provider store={store}>
+				<AuthProvider>
+					<UserProvider>
+						<PostProvider>
+							<MessageProvider>
+								<Entry />
+							</MessageProvider>
+						</PostProvider>
+					</UserProvider>
+				</AuthProvider>
+			</Provider>
+		</SafeAreaProvider>
 	);
 }

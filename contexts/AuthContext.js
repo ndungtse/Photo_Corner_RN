@@ -3,10 +3,10 @@ import jwtdecode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { authorize } from "./Redux/userSlice";
 import axios from "axios";
+import { getLocal } from "./hooks/useLocal";
 
 let AuthContext = React.createContext();
-export const token =
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2MmYwZTI1YmMzMjNkOTVjZTFiZjE4NDUiLCJpYXQiOjE2NjMzMzQ5MDN9.SM1_JHnJMfFYwKgrsNbRn_mcOESWWrH2YNy3xWNB9Ms";
+
 export const useAuth = () => {
 	return React.useContext(AuthContext);
 };
@@ -19,25 +19,26 @@ export const api = axios.create({
 });
 
 export default function AuthProvider({ children }) {
-	let [user, setUser] = React.useState(undefined);
+	const [user, setUser] = React.useState(undefined);
+	const [token, setToken] = React.useState(undefined);
 	const dispatch = useDispatch();
 
 	const getSavedToken = async () => {
-		// const token = await AsyncStorage.getItem('token')
+		const token = await getLocal("token");
 		if (token) {
 			const userDetails = await jwtdecode(token);
 			try {
-				console.log(userDetails);
+				console.log(userDetails, typeof token);
 				const userd = await api.get(`/user/getUserByID/${userDetails.userid}`, {
 					headers: {
 						"Content-Type": "application/json",
 						authorization: "Bearer " + token,
 					},
 				});
+				console.log(userd.data);
 				dispatch(authorize({ decoded: userd.data.user, token: token }));
 				return setUser(userd.data);
 			} catch (error) {
-				console.log(error);
 				setUser(null);
 			}
 		}
@@ -45,6 +46,7 @@ export default function AuthProvider({ children }) {
 	};
 
   const getUserByID = async(id)=> {
+	const token = await getLocal("token");
     try {
       const res = await api.get(`/user/getUserByID/${id}`, {
         headers: {
@@ -60,7 +62,6 @@ export default function AuthProvider({ children }) {
 
 	React.useEffect(() => {
 		getSavedToken();
-		// setUser(null);
 	}, []);
 
 	let value = { user, setUser, getUserByID };

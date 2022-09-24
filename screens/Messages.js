@@ -1,7 +1,6 @@
 import { StyleSheet, Text,TextInput, TouchableOpacity,Image,
    View,KeyboardAvoidingView, ScrollView } from 'react-native'
 import React from 'react'
-import NavBar from '../components/NavBar';
 import { Feather } from '@expo/vector-icons';
 import tw from 'twrnc'
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -36,7 +35,6 @@ const Messages = () => {
         </View>
         <Recent />
       </ScrollView>
-      <NavBar />
       <StatusBar style="light" />
     </View>
   )

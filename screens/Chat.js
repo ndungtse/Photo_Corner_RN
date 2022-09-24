@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
-import NavBar from '../components/NavBar';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import ChatInput from '../components/Messages/ChatInput';
@@ -40,7 +39,6 @@ const Chat = () => {
              <ChatRow />  
         </ScrollView>
         <ChatInput />
-      <NavBar />
     </View>
   )
 }

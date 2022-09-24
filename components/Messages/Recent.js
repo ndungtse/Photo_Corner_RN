@@ -3,6 +3,7 @@ import React from 'react'
 import tw from 'twrnc'
 import { useNavigation } from '@react-navigation/native';
 import { useUsers } from '../../contexts/userContext';
+import { useSelector } from 'react-redux';
 
 const Recent = ({startChat}) => {
   const { users, setUsers } = useUsers()

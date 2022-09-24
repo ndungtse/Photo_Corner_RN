@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import loginUser from '../contexts/api/Login';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Login = () => {
   const [show, setShow]= useState(false);
@@ -21,10 +22,16 @@ const Login = () => {
       const isTrue = await loginUser(dispatch, data)
       if(isTrue) {
         dispatch({type: 'LOGIN'})
-        navigation.navigate('Home')
+        navigation.navigate('Root')
       }
     }
   }
+  useEffect(()=>{
+    return () => {
+      setShow(false)
+      setData({email: '', password: ''})
+    }
+  },[])
   return (
     <View style={tw`p-2 flex flex-col items-center justify-center h-full`}>
 

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
-import NavBar from '../components/NavBar';
 import tw from 'twrnc'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import Notification from '../components/Notifications/Notification';
@@ -35,7 +34,6 @@ const Notifications = () => {
           <Notification />
         </View>
       </ScrollView>
-      <NavBar />
       <StatusBar style="light" />
     </View>
   )

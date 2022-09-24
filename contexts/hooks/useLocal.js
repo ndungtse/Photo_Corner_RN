@@ -26,7 +26,20 @@ export default async function useLocal(key, inValue){
 }
 
 export const getLocal = async(key) =>{
-    const savedValue = await AsyncStorage.getItem(key);
-    if (savedValue) return savedValue;
-    return 
+    try {
+        const savedValue = await AsyncStorage.getItem(key);
+        if (savedValue) return JSON.parse(savedValue);
+        return null
+    } catch (error) {
+        return null
+    }
+}
+
+export const removeLocal = async(key) =>{
+    try {
+        await AsyncStorage.removeItem(key);
+        return true
+    } catch (error) {
+        return false
+    }
 }

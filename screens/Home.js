@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
-import NavBar from '../components/NavBar';
 import tw from 'twrnc'
 import Stories from '../components/Home/Stories';
 import Post from '../components/Home/Post';
@@ -17,7 +16,6 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-      console.log(posts);
       setCurPosts(posts)
   }, [posts])
 
@@ -34,7 +32,6 @@ const Home = () => {
           <Post key={post._id} post={post} />
         ))}
       </ScrollView>
-      <NavBar />
       <StatusBar style="light" />
     </View>
   )

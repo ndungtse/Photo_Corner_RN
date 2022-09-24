@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 const UsersContext = React.createContext();
 
 export function useUsers() {
@@ -51,3 +52,7 @@ export function UserProvider({ children }) {
     </UsersContext.Provider>
   );
 }
+
+// const getSavedToken = async () => {
+//     const token = await AsyncStorage.getItem('token')
+//   }
