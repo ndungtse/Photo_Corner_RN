@@ -4,12 +4,30 @@ import tw from 'twrnc'
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import Post from '../Home/Post';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { usePosts } from '../../contexts/PostContext';
+import { useEffect } from 'react';
+import { setUserPosts } from '../../contexts/Redux/postSlice';
 
 const Profile = () => {
   const { currentUser } = useSelector(state => state.user)
-  const { posts } = useSelector(state => state.post)
-  console.log("user: ", currentUser);
+  const { userPosts } = useSelector(state => state.post)
+  const { getPostsByUser } = usePosts()
+  const dispatch = useDispatch()
+
+  const getUsePosts = async () => {
+    try {
+      const posts = await getPostsByUser(currentUser._id)
+      dispatch(setUserPosts(posts.posts));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(()=> {
+    getUsePosts()
+    console.log(userPosts);
+  },[])
 
   return (
     <View style={tw`w-full h-full flex-col bg-slate-100 rounded-t-3xl p-3`}>
@@ -18,7 +36,7 @@ const Profile = () => {
          <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={{uri: currentUser.profile}} />
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
-            <Text style={tw` font-bold`}>7</Text>
+            <Text style={tw` font-bold`}>{userPosts.length}</Text>
             <Text style={tw`text-sm`}>Posts</Text>
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
@@ -45,7 +63,7 @@ const Profile = () => {
           </View>
           <Feather name="grid" size={24} color="black" />
       </View>
-      {posts.map(post => (
+      {userPosts.map(post => (
         <Post key={post._id} post={post} />
       ))}
     </View>

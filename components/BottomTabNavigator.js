@@ -31,7 +31,7 @@ const BottomTabNavigator = () => {
 					component={Home}
 					options={() => ({
 						title: "Home",
-						tabBarIcon: () => <Ionicons name="home" style={tw`text-2xl`} />,
+						tabBarIcon: ({color}) => <Ionicons name="home" style={tw`text-2xl`} color={color} />,
 						headerShown: false,
 					})}
 				/>
@@ -40,7 +40,7 @@ const BottomTabNavigator = () => {
 					component={Messages}
 					options={() => ({
 						title: "Messages",
-						tabBarIcon: () => <Ionicons name="chatbox" style={tw`text-2xl`} />,
+						tabBarIcon: ({color}) => <Ionicons name="chatbox" style={tw`text-2xl`} color={color} />,
 						headerShown: false,
 					})}
 				/>
@@ -49,7 +49,7 @@ const BottomTabNavigator = () => {
 					component={Notifications}
 					options={() => ({
 						title: "Notifications",
-						tabBarIcon: () => <FontAwesome5 name="bell" style={tw`text-2xl`} />,
+						tabBarIcon: ({color}) => <FontAwesome5 name="bell" style={tw`text-2xl`} color={color} />,
 						headerShown: false,
 					})}
 				/>
@@ -58,7 +58,7 @@ const BottomTabNavigator = () => {
 					component={Account}
 					options={() => ({
 						title: "Profile",
-						tabBarIcon: () => <FontAwesome5 name="user" style={tw`text-2xl`} />,
+						tabBarIcon: ({color}) => <FontAwesome5 name="user" style={tw`text-2xl`} color={color} />,
 						headerShown: false,
 					})}
 				/>

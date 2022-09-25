@@ -4,6 +4,7 @@ const postSlice = createSlice({
     name: "post",
     initialState: {
         posts: [],
+        userPosts: [],
         error: null,
         isWantToPost: false,
         isLikedByUser: false,
@@ -16,10 +17,12 @@ const postSlice = createSlice({
         likePost: (state, action) => {
             state.posts[action.payload].isLikedByUser = true;
         },
-
+        setUserPosts: (state, action) => {
+            state.userPosts = action.payload;
+        },
     }
 }
 );
 
-export const { pickPosts } = postSlice.actions;
+export const { pickPosts, setUserPosts } = postSlice.actions;
 export default postSlice.reducer;

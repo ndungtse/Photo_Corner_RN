@@ -35,7 +35,6 @@ export default function AuthProvider({ children }) {
 						authorization: "Bearer " + token,
 					},
 				});
-				console.log(userd.data);
 				dispatch(authorize({ decoded: userd.data.user, token: token }));
 				return setUser(userd.data);
 			} catch (error) {

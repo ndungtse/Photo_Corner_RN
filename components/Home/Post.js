@@ -78,7 +78,6 @@ const Post = ({post}) => {
         try {
             const likesData = await getLikesDataByPost(postData._id);
             setLikesData(likesData.likedata);
-            console.log(likesData.likedata);
         } catch (error) {
             console.log(`%c${error}`, "color: red; font-size: 20px; padding: 10px; border: 1px solid red; border-radius: 5px;");
         }
@@ -149,9 +148,12 @@ const Post = ({post}) => {
             <KeyboardAvoidingView style={tw`flex-row items-center w-11/12`}
              behavior={Platform.OS === "ios" ? "padding" : "height"}
             >
-                <TextInput style={styles.input} placeholder="Add a comment..." />
+                <TextInput onChangeText={(comment) => setComment(comment)}
+                onSubmitEditing={handleComment}
+                style={styles.input} value={comment} placeholder="Add a comment..." />
             </KeyboardAvoidingView>
-            <MaterialIcons style={tw`mt-3`} name="send" size={24} color="black" />
+            <MaterialIcons onPress={handleComment}
+            style={tw`mt-3`} name="send" size={24} color="black" />
         </View>
     </View>
     )}

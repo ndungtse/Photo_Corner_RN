@@ -3,8 +3,19 @@
       "name": "Photo Corner",
       "slug": "photo_corner",
       "version": "1.0.0",
+      "scheme": "photo_corner",
       "orientation": "portrait",
       "icon": "./assets/logo.png",
+      "plugins": [
+        [
+          "expo-image-picker",
+          {
+            "photosPermission": "The app accesses your photos to let you share them with your friends.",
+            "cameraPermission": "The app accesses your camera to let you take photos and videos.",
+            "microphonePermission": "The app accesses your microphone to let you record audio."
+          }
+        ]
+      ],
       "userInterfaceStyle": "light",
       "splash": {
         "image": "./assets/splash.png",

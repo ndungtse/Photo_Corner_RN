@@ -46,9 +46,13 @@ export const PostProvider = ({ children }) => {
 				}),
 			}
 		);
-		await res.json();
+		const data = await res.json();
+		// console.log(data);
+		if(data.error){
+			return {data: data, error: true}
+		}
 		await getPosts();
-		return true;
+		return { data: data, error: false };
 	}
 
 	const deletePost = async (id) => {
@@ -117,7 +121,6 @@ export const PostProvider = ({ children }) => {
 			}
 		);
 		const data = await res.json();
-		console.log(data);
 		return data;
 	}
 
@@ -265,10 +268,30 @@ export const PostProvider = ({ children }) => {
 		return data;
 	}
 
+	const getPostsByUser = async (userID) => {
+		try {
+			const res = await fetch(
+				`https://photocorner33.herokuapp.com/post/getPostByPosterID/${userID}`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						authorization: "Bearer " + token,
+					},
+				}
+			);
+			const data = await res.json();
+			return data;
+		} catch (error) {
+			console.log(error);
+			return [];
+		}
+	}
+
 	return (
 		<PostContext.Provider value={{ posts, setPosts, getPosts, newPost, deletePost, deleteComment, commentOnPost, likePost, getAllPostDataById, getCommentsByPost,
 		 getLikesDataByPost,  getLikesCountByPost, unlikePost, updateCommentOnPost, updatePost, getPostsByFollowing,
-		 isWantToPost, setIsWantToPost}}>
+		 isWantToPost, setIsWantToPost, getPostsByUser}}>
 			{children}
 		</PostContext.Provider>
 	);
