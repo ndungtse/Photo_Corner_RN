@@ -24,10 +24,14 @@ const Home = () => {
   }, [posts])
 
   return (
-    <View style={tw`px-3 pt-4 w-full h-full justify-between`}>
+    <View style={tw`px-3 w-full h-full justify-between`}>
       {showForm && <PostForm setShowForm={setShowForm} />}
       <View style={styles.search}>
-          <Text style={tw`text-xl font-semibold`}>Photo Corner</Text>
+          <View style={tw`flex-row items-center`}>
+            <Image style={{ width: 30, height: 30, borderRadius: 100, borderWidth: 1 }} source={require('../assets/logo.png')} />
+            <Text style={tw`text-lg font-semibold`}>Photo</Text>
+            <Text style={tw`text-lg text-blue-700 font-semibold`}>Corner</Text>
+          </View>
           <FontAwesome name='search' style={tw`text-xl rounded-xl px-2 py-1`} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}
@@ -37,14 +41,14 @@ const Home = () => {
           <Image style={tw`h-10 w-10 rounded-full`} source={{uri: user.profile}} />
           <TouchableOpacity onPress={()=> setShowForm(true)}
             style={tw`text-slate-600 flex-row items-center border-2 border-blue-300 rounded-3xl px-4 py-2 w-10/12 ml-2`}>
-            <Text style={tw`text-slate-60`}>{user.username}, Tap to Create new Post</Text>
+            <Text style={tw`text-slate-600`}>{user.username}, Tap to Create new Post</Text>
           </TouchableOpacity>
         </View>
         {curPosts.map(post => (
           <Post key={post._id} post={post} />
         ))}
       </ScrollView>
-      <StatusBar style="light" />
+      <StatusBar style="auto" hidden />
     </View>
   )
 }

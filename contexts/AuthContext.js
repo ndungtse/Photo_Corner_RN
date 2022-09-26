@@ -63,7 +63,7 @@ export default function AuthProvider({ children }) {
 		getSavedToken();
 	}, []);
 
-	let value = { user, setUser, getUserByID };
+	let value = { user, setUser, getUserByID, getSavedToken };
 
 	return (
 		<>

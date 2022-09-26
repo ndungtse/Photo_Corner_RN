@@ -43,10 +43,13 @@ const userSlice = createSlice({
             state.isLoggedIn = true;
             state.currentUser = action.payload.decoded;
             state.token = action.payload.token;
+        },
+        setUser: (state, action) => {
+            state.currentUser = action.payload;
         }
     }
 });
 
-export const { login, signup, signupFailure, logout, loginFailure,loginStart, authorize } = userSlice.actions;
+export const { login, signup, signupFailure, logout, loginFailure,loginStart, authorize, setUser } = userSlice.actions;
 
 export default userSlice.reducer;

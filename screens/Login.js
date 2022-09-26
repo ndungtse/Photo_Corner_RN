@@ -7,10 +7,12 @@ import loginUser from '../contexts/api/Login';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const [show, setShow]= useState(false);
   const [data, setData] = useState({email: '', password: ''});
+  const { getSavedToken } = useAuth()
 
   const dispatch = useDispatch()
   const { status, error, isFetching } = useSelector(state => state.user)
@@ -22,6 +24,7 @@ const Login = () => {
       const isTrue = await loginUser(dispatch, data)
       if(isTrue) {
         dispatch({type: 'LOGIN'})
+        await getSavedToken()
         navigation.navigate('Root')
       }
     }

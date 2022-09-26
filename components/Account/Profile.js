@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import Post from '../Home/Post';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePosts } from '../../contexts/PostContext';
 import { useEffect } from 'react';
 import { setUserPosts } from '../../contexts/Redux/postSlice';
+import { Button, Colors } from 'react-native-paper';
 
-const Profile = () => {
+const Profile = ({setShowForm, setIsCover}) => {
   const { currentUser } = useSelector(state => state.user)
   const { userPosts } = useSelector(state => state.post)
   const { getPostsByUser } = usePosts()
@@ -18,7 +19,7 @@ const Profile = () => {
   const getUsePosts = async () => {
     try {
       const posts = await getPostsByUser(currentUser._id)
-      dispatch(setUserPosts(posts.posts));
+      dispatch(setUserPosts(posts.posts.reverse()));
     } catch (error) {
       console.log(error);
     }
@@ -32,8 +33,15 @@ const Profile = () => {
   return (
     <View style={tw`w-full h-full flex-col bg-slate-100 rounded-t-3xl p-3`}>
       <View style={tw`flex-row items-center`}>
-        <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
+        <View style={tw`h-[13] w-[13] relative border-2 border-blue-500 rounded-full`}>
          <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={{uri: currentUser.profile}} />
+         <Pressable onPress={()=>{
+          setIsCover(false)
+          setShowForm(true)
+         }}
+          style={tw`absolute bottom-0 -right-1`}>
+          <Feather name="camera" size={16} color="blue" style={tw`bg-white rounded-full p-1`} />
+         </Pressable>
         </View>
         <View style={tw`px-3 py-1 ml-3 bg-white rounded-xl flex-col items-center justify-center`}>
             <Text style={tw` font-bold`}>{userPosts.length}</Text>
@@ -51,9 +59,15 @@ const Profile = () => {
             <Entypo name="chevron-down" size={24} color="black" />
         </View>
       </View>
-      <View style={tw`mt-2`}>
-        <Text style={tw`font-bold text-lg`}>{ currentUser.fullname}</Text>
-        <Text style={tw`text-sm font-semibold`}>@{currentUser.username}</Text>
+      <View style={tw`mt-2 flex-row w-full justify-between items-center`}>
+        <View style={tw`mt-2`}>
+          <Text style={tw`font-bold text-lg`}>{ currentUser.fullname}</Text>
+          <Text style={tw`text-sm font-semibold`}>@{currentUser.username}</Text>
+        </View>
+        <Pressable style={tw`flex-row items-center bg-slate-600 px-2 py-1 rounded-lg`}>
+          <MaterialCommunityIcons name="account-edit-outline" size={24} color="white" />
+          <Text style={tw`text-white`}>Edit Profile</Text>
+        </Pressable>
       </View>
       <View style={tw`flex-row items-center justify-between mt-3`}>
           <View style={tw`flex-row`}>

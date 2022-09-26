@@ -1,46 +1,54 @@
 {
-    "expo": {
-      "name": "Photo Corner",
-      "slug": "photo_corner",
-      "version": "1.0.0",
-      "scheme": "photo_corner",
-      "orientation": "portrait",
-      "icon": "./assets/logo.png",
-      "plugins": [
-        [
-          "expo-image-picker",
-          {
-            "photosPermission": "The app accesses your photos to let you share them with your friends.",
-            "cameraPermission": "The app accesses your camera to let you take photos and videos.",
-            "microphonePermission": "The app accesses your microphone to let you record audio."
-          }
-        ]
-      ],
-      "userInterfaceStyle": "light",
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
+  "expo": {
+    "name": "Photo Corner",
+    "slug": "photo_corner",
+    "version": "1.0.0",
+    "scheme": "photo_corner",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends.",
+          "cameraPermission": "The app accesses your camera to let you take photos and videos.",
+          "microphonePermission": "The app accesses your microphone to let you record audio."
+        }
+      ]
+    ],
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.photo.corner"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       },
-      "updates": {
-        "fallbackToCacheTimeout": 0
-      },
-      "assetBundlePatterns": [
-        "**/*"
-      ],
-      "ios": {
-        "supportsTablet": true
-      },
-      "android": {
-        "adaptiveIcon": {
-          "foregroundImage": "./assets/adaptive-icon.png",
-          "backgroundColor": "#FFFFFF"
-        },
-        "package": "com.photo.corner"
-      },
-      "web": {
-        "favicon": "./assets/favicon.png"
+      "package": "com.photo.corner",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bcb57dc0-b0bb-401b-9369-5c2326ea2522"
       }
     }
   }
-  
+}
