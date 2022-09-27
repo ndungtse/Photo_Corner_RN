@@ -31,8 +31,8 @@ const Profile = ({setShowForm, setIsCover}) => {
   },[])
 
   return (
-    <View style={tw`w-full h-full flex-col bg-slate-100 rounded-t-3xl p-3`}>
-      <View style={tw`flex-row items-center`}>
+    <View style={tw`w-full h-full flex-col bg-slate-100 rounded-t-3xl py-3`}>
+      <View style={tw`flex-row items-center px-3`}>
         <View style={tw`h-[13] w-[13] relative border-2 border-blue-500 rounded-full`}>
          <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={{uri: currentUser.profile}} />
          <Pressable onPress={()=>{
@@ -59,7 +59,7 @@ const Profile = ({setShowForm, setIsCover}) => {
             <Entypo name="chevron-down" size={24} color="black" />
         </View>
       </View>
-      <View style={tw`mt-2 flex-row w-full justify-between items-center`}>
+      <View style={tw`mt-2 px-3 flex-row w-full justify-between items-center`}>
         <View style={tw`mt-2`}>
           <Text style={tw`font-bold text-lg`}>{ currentUser.fullname}</Text>
           <Text style={tw`text-sm font-semibold`}>@{currentUser.username}</Text>
@@ -69,7 +69,7 @@ const Profile = ({setShowForm, setIsCover}) => {
           <Text style={tw`text-white`}>Edit Profile</Text>
         </Pressable>
       </View>
-      <View style={tw`flex-row items-center justify-between mt-3`}>
+      <View style={tw`flex-row items-center justify-between mt-3 px-3`}>
           <View style={tw`flex-row`}>
             <Text style={tw`font-semibold text-lg border-b-2 py-1`}>Posts</Text>
             <Text style={tw`font-semibold ml-2 text-lg  py-1`}>Status</Text>
@@ -77,9 +77,11 @@ const Profile = ({setShowForm, setIsCover}) => {
           </View>
           <Feather name="grid" size={24} color="black" />
       </View>
+      <View style={tw`bg-white px-3`}>
       {userPosts.map(post => (
         <Post key={post._id} post={post} />
-      ))}
+        ))}
+        </View>
     </View>
   )
 }

@@ -106,7 +106,7 @@ const Post = ({post}) => {
   return (
     <>
     {poster && (
-    <View style={styles.post}>
+    <View style={[styles.post, tw`bg-slate-100 rounded-xl`]}>
         <View style={tw`flex px-2 flex-row items-center justify-between`}>
             <View style={tw`flex-row items-center`}>
                 <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>

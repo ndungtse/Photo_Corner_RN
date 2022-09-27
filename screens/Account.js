@@ -27,11 +27,11 @@ const Account = () => {
   }
 
   return (
-    <View style={tw`px-3 flex-col pt-4 w-full h-full justify-between`}>
+    <View style={tw` flex-col pt-4 w-full h-full justify-between`}>
       {showForm && <UpdatePicture cover={isCover} setShowForm={setShowForm} />}
       <ScrollView showsVerticalScrollIndicator={false}
            style={tw`h-[85%] w-full relative flex`}>
-        <View style={tw`w-full flex-col h-[50] relative`}>
+        <View style={tw`w-full flex-col h-[50] relative px-3`}>
           <Image style={tw`w-full h-full`} source={{uri: user.cover}} />
           <View style={tw`flex-row w-full px-3 top-5 justify-between absolute`}>
             <Pressable onPress={()=>{

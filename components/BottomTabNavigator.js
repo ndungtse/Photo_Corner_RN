@@ -13,9 +13,29 @@ import Notifications from "../screens/Notifications";
 import { useAuth } from "../contexts/AuthContext";
 import Messages from "../screens/Messages";
 import Account from "../screens/Account";
+import { Platform, Keyboard } from 'react-native';
+import { useState, useEffect } from "react";
+import Explore from "../screens/Explore";
 
 const BottomTabNavigator = () => {
   const { user } = useAuth();
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    let keyboardEventListeners;
+    if (Platform.OS === 'android') {
+      keyboardEventListeners = [
+        Keyboard.addListener('keyboardDidShow', () => setVisible(false)),
+        Keyboard.addListener('keyboardDidHide', () => setVisible(true)),
+      ];
+    }
+    return () => {
+      if (Platform.OS === 'android') {
+        keyboardEventListeners &&
+          keyboardEventListeners.forEach(eventListener => eventListener.remove());
+      }
+    };
+  }, []);
 
 	const BottomTab = createBottomTabNavigator();
 
@@ -24,6 +44,11 @@ const BottomTabNavigator = () => {
 				initialRouteName={user?'Home':'Login'}
 				screenOptions={{
 					tabBarActiveTintColor: "blue",
+					tabBarStyle: {
+						position: "absolute",
+						bottom: 0,
+						display: visible ? "flex" : "none",
+					}
 				}}
 			>
 				<BottomTab.Screen
@@ -42,6 +67,15 @@ const BottomTabNavigator = () => {
 						title: "Messages",
 						tabBarIcon: ({color}) => <Ionicons name="chatbox" style={tw`text-2xl`} color={color} />,
 						headerShown: false,
+					})}
+				/>
+				<BottomTab.Screen
+					name="Explore"
+					component={Explore}
+					options={() => ({
+						title: "Explore",
+						tabBarIcon: ({color}) => <FontAwesome5 name="wpexplorer" style={tw`text-2xl`} color={color} />,
+						// headerShown: false,
 					})}
 				/>
 				<BottomTab.Screen
@@ -68,15 +102,3 @@ const BottomTabNavigator = () => {
 
 export default BottomTabNavigator;
 
-const styles = StyleSheet.create({
-	nav: {
-		display: "flex",
-		flexDirection: "row",
-		width: "100%",
-		borderTopWidth: 0.1,
-		justifyContent: "center",
-		borderColor: "#10151f34",
-		height: 60,
-		alignItems: "center",
-	},
-});
