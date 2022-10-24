@@ -25,11 +25,18 @@ const Home = () => {
 
   const submitSearch = () => {
     if (query.length > 0) {
+      navigation.navigate('Search', {
+        query: query
+      })
     }
   }
 
   useEffect(() => {
     if(posts.length === 0) getPosts();
+
+    return () => {
+      setShowSearch(false)
+    }
     }, []);
 
     useEffect(() => {
@@ -52,7 +59,7 @@ const Home = () => {
               <FontAwesome name='search' color='blue' style={tw`text-xl rounded-xl px-2 py-1`} />
             </Pressable>
             {showSearch && <KeyboardAvoidingView style={tw`w-10/12 flex-row border-l-[0.2] border-black`}>
-              <TextInput
+              <TextInput value={query}
               onChangeText={text => setQuery(text)} onSubmitEditing={submitSearch}
                autoFocus ref={inputRef} placeholder='Search' style={tw`text-sm w-full px-2`} />
                 <Pressable onPress={()=> setShowSearch(false)}>
