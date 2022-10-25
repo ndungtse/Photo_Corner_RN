@@ -16,10 +16,11 @@ const Notifications = () => {
          style={tw`h-[85%] w-full flex flex-col`}>
         <View style={tw`flex-col w-full mt-4`}>
           <Text style={tw`font-semibold text-lg`}>New</Text>
-          <Notification />
-          <Notification />
+          {/* <Notification />
+          <Notification /> */}
+          <Text>No new notifications</Text>
         </View>
-        <View style={tw`flex-col w-full mt-4`}>
+        {/* <View style={tw`flex-col w-full mt-4`}>
           <Text style={tw`font-semibold text-lg`}>Earlier</Text>
           <Notification />
         </View>
@@ -32,7 +33,7 @@ const Notifications = () => {
           <Text style={tw`font-semibold text-lg`}>Old</Text>
           <Notification />
           <Notification />
-        </View>
+        </View> */}
       </ScrollView>
       <StatusBar style="light" />
     </View>

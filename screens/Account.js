@@ -32,7 +32,7 @@ const Account = () => {
       <ScrollView showsVerticalScrollIndicator={false}
            style={tw`h-[85%] w-full relative flex`}>
         <View style={tw`w-full flex-col h-[50] relative px-3`}>
-          <Image style={tw`w-full h-full`} source={{uri: user.cover}} />
+          <Image style={tw`w-full h-full overflow-hidden rounded-t-3xl`} source={{uri: user.cover}} />
           <View style={tw`flex-row w-full px-3 top-5 justify-between absolute`}>
             <Pressable onPress={()=>{
              setIsCover(true)

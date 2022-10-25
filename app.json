@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "scheme": "photo_corner",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "plugins": [
       [
         "expo-image-picker",

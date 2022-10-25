@@ -4,31 +4,61 @@ import tw from "twrnc";
 import { Feather, Entypo, Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import Post from "../components/Home/Post";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { usePosts } from "../contexts/PostContext";
 import { useNavigation } from "@react-navigation/native";
+import { useUsers } from "../contexts/userContext";
+import { setUser } from "../contexts/Redux/userSlice";
 
 const DProfile = ({ route }) => {
 	const { id } = route.params;
 	const { getUserByID } = useAuth();
-	const [user, setUser] = React.useState(null);
-  const { currentUser } = useSelector(state => state.user)
-  const [posts, setPosts] = useState([])
-  const { getPostsByUser } = usePosts();
-  const navigation = useNavigation()
+	const [user, setDuser] = React.useState(null);
+	const { currentUser } = useSelector((state) => state.user);
+	const [posts, setPosts] = useState([]);
+	const { getPostsByUser } = usePosts();
+	const navigation = useNavigation();
+	const [foll, setFoll] = React.useState(false);
+	const { follow, unfollow, following } = useUsers();
+	const dispatch = useDispatch();
+
+	const handleFollow = () => {
+		if (foll) {
+			unfollow(user);
+			dispatch(
+				setUser({ ...currentUser, following: currentUser.following + -1 })
+			);
+			setFoll(false);
+		} else {
+			follow(user);
+			dispatch(
+				setUser({ ...currentUser, following: currentUser.following + 1 })
+			);
+		}
+		setFoll(!foll);
+	};
 
 	const getUser = async () => {
 		const user = await getUserByID(id);
-		setUser(user);
+		setDuser(user);
 	};
 
-  const getUsePosts = async () => {
+	const konwIfFollowing = () => {
+		let pfoll = following;
+		for (let i = 0; i < pfoll.length; i++) {
+			if (following[i].user === id) {
+				setFoll(true);
+			}
+		}
+	}
+
+	const getUsePosts = async () => {
 		try {
 			const posts = await getPostsByUser(id);
-      		setPosts(posts.posts.reverse())
+			setPosts(posts.posts.reverse());
 			console.log(posts);
 		} catch (error) {
 			console.log(error);
@@ -37,6 +67,7 @@ const DProfile = ({ route }) => {
 
 	useEffect(() => {
 		getUser();
+		konwIfFollowing();
 	}, [id]);
 
 	useEffect(() => {
@@ -45,10 +76,10 @@ const DProfile = ({ route }) => {
 	}, []);
 
 	return (
-		<View style={tw`flex-col pt-6 w-full h-full justify-between`}>
+		<View style={tw`flex-col pt-6 w-full bg-white h-full justify-between`}>
 			<Pressable
 				onPress={() => navigation.goBack()}
-				style={[tw`top-0 left-2 z-50 sticky `, { position: "absolute" }]}
+				style={[tw`top-0 left-4 z-50`, { position: "absolute" }]}
 			>
 				<Ionicons name="arrow-back" style={[tw``]} size={22} color="black" />
 			</Pressable>
@@ -59,9 +90,7 @@ const DProfile = ({ route }) => {
 				<View style={tw`w-full flex-col h-[50] relative px-3`}>
 					<Image style={tw`w-full h-full`} source={{ uri: user?.cover }} />
 				</View>
-				<View
-					style={tw`w-full h-full flex-col bg-slate-100 rounded-t-3xl py-3`}
-				>
+				<View style={tw`w-full h-full flex-col bg-white rounded-t-3xl py-3`}>
 					<View style={tw`flex-row items-center px-3`}>
 						<View
 							style={tw`h-[13] w-[13] relative border-2 border-blue-500 rounded-full`}
@@ -104,6 +133,14 @@ const DProfile = ({ route }) => {
 								@{currentUser.username}
 							</Text>
 						</View>
+						<Pressable
+							style={tw`${foll?"bg-slate-700": "bg-blue-500"} px-3 py-1 rounded-lg`}
+							onPress={handleFollow}
+						>
+								<Text style={tw`text-white font-semibold`}>
+									{foll ? "unfollow" : "follow"}
+								</Text>
+						</Pressable>
 					</View>
 					<View style={tw`flex-row items-center justify-between mt-3 px-3`}>
 						<View style={tw`flex-row`}>
@@ -119,6 +156,11 @@ const DProfile = ({ route }) => {
 						{posts.map((post) => (
 							<Post key={post._id} post={post} />
 						))}
+						{posts.length === 0 && (
+							<Text style={tw`text-lg text-center mt-4 font-semibold`}>
+								No Posts Yet
+							</Text>
+						)}
 					</View>
 				</View>
 			</ScrollView>

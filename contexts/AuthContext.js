@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { authorize } from "./Redux/userSlice";
 import axios from "axios";
 import { getLocal } from "./hooks/useLocal";
+import { Image, Text, View } from "react-native";
+import tw from 'twrnc'
 
 let AuthContext = React.createContext();
 
@@ -67,7 +69,15 @@ export default function AuthProvider({ children }) {
 
 	return (
 		<>
-			{user !== undefined && (
+			{user === undefined ? (
+				<View style={[tw`flex h-full flex-col w-full items-center justify-center`]}>
+					<Image
+						source={require("../assets/splash.png")}
+						style={[tw`flex w-full`]} resizeMode="contain"
+					/>
+					{/* <Text style={[tw`text-black`]}>Loading...</Text> */}
+				</View>
+			) : (
 				<AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 			)}
 		</>

@@ -1,11 +1,28 @@
 import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import tw from "twrnc";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { useUsers } from "../../contexts/userContext";
+import { setUser } from "../../contexts/Redux/userSlice";
 
 const Suggested = ({ user }) => {
 	const { currentUser } = useSelector((state) => state.user);
+	const [foll, setFoll] = React.useState(false);
+	const { follow, unfollow } = useUsers()
+	const dispatch = useDispatch()
+
+	const handleFollow = () => {
+		if (foll) {
+			unfollow(user);
+			dispatch(setUser({ ...currentUser, following: currentUser.following + -1 }));
+			setFoll(false);
+		} else {
+			follow(user);
+			dispatch(setUser({ ...currentUser, following: currentUser.following + 1 }));
+		}
+		setFoll(!foll);
+	};
 
 	const navigation = useNavigation()
 
@@ -30,8 +47,10 @@ const Suggested = ({ user }) => {
 					<Text>@{user.username}</Text>
 				</View>
 			</Pressable>
-			<Pressable>
-				<Text style={[tw`text-blue-600`]}>Follow</Text>
+			<Pressable
+				onPress={handleFollow}
+			>
+				<Text style={[tw`text-blue-600`]}>{foll ? "Following" : "Follow"}</Text>
 			</Pressable>
 		</View>
 	);

@@ -12,6 +12,7 @@ export function UserProvider({ children }) {
   const token  = useSelector(state => state.user.token);
   const { getUserByID } = useAuth()
   const [suggested, setSuggested] = useState([]);
+	const [following, setFollowing] = useState([]);
 
   const getUsers = async() => {
     const res = await fetch("https://photocorner33.herokuapp.com/user/all",{
@@ -36,6 +37,22 @@ export function UserProvider({ children }) {
     const data = await res.json();
     setSuggested(data.users);
   }
+
+  const getFollowingData = async () => {
+		const res = await fetch(
+			`https://photocorner33.herokuapp.com/user/getFollowingData`,
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: "Bearer " + token,
+				},
+			}
+		);
+		const data = await res.json();
+		setFollowing(data.following);
+		return data.following;
+	};
 
   const updatePhoto = async(datas) => {
     console.log(datas);
@@ -82,12 +99,43 @@ export function UserProvider({ children }) {
     }
   }
 
+  const follow = async (data) => {
+		const res = await fetch(
+			`http://photocorner33.herokuapp.com/user/followUser/${data._id}`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify(data),
+			}
+		);
+		const data1 = await res.json();
+	};
+
+	const unfollow = async (data) => {
+		const res = await fetch(
+			`http://photocorner33.herokuapp.com/user/unfollow/${data._id}`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify(data),
+			}
+		);
+		const data1 = await res.json();
+	};
+
   useEffect(() => {
     getUsers();
+    getFollowingData();
   }, []);
 
   return (
-    <UsersContext.Provider value={{ users, setUsers, updateCoverPhoto, updatePhoto, getUsers, getSuggestedUsers, suggested, setSuggested}}>
+    <UsersContext.Provider value={{ users, setUsers, updateCoverPhoto, updatePhoto, getUsers, getSuggestedUsers, suggested, setSuggested, following, follow, unfollow}}>
         {children}
     </UsersContext.Provider>
   );

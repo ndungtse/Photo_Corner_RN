@@ -12,13 +12,15 @@ const Recent = ({startChat}) => {
   const recentChats = users.filter((u) => u._id !== user._id);
 
   return (
-    <View style={tw`flex-col w-full flex mt-3`}>
-      <Text style={tw`text-lg font-semibold`}>Messages</Text>
-      {recentChats.map((use, index) => (
-        <RecentRow  use={use} key={index} startChat={startChat}  />
-      ))}
-    </View>
-  )
+		<View style={tw`flex-col w-full flex mt-3`}>
+			<Text style={tw`text-lg font-semibold`}>Messages</Text>
+			<Text>No new Messages.</Text>
+			<Text>Messages comming soon in next verions</Text>
+			{/* {recentChats.map((use, index) => (
+				<RecentRow use={use} key={index} startChat={startChat} />
+			))} */}
+		</View>
+	);
 }
 
 export default Recent
