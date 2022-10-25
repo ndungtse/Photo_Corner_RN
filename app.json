@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "scheme": "photo_corner",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/icon.png",
     "plugins": [
       [
         "expo-image-picker",
@@ -18,7 +18,7 @@
     ],
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -43,7 +43,7 @@
       ]
     },
     "web": {
-      "favicon": "./assets/logo.png"
+      "favicon": "./assets/icon.png"
     },
     "extra": {
       "eas": {

@@ -21,9 +21,9 @@ const Explore = () => {
         <TextInput style={tw`w-full text-black px-2 text-lg font-semibold`} />
       </KeyboardAvoidingView>
         <View style={tw`flex flex-col w-full mt-3`}>
-            <Text style={tw`text-lg font-semibold`}>Suggested users</Text>
-            <ScrollView style={tw`mt-3`} horizontal showsHorizontalScrollIndicator={false}>
-                {suggested.map((user, index) => (
+            <Text style={tw` font-semibold`}>Suggested to follow</Text>
+            <ScrollView style={tw`mt-3`} showsHorizontalScrollIndicator={false}>
+                {suggested.slice(0, 6).map((user, index) => (
                   <Suggested key={index} user={user} />
                   ))}
             </ScrollView>

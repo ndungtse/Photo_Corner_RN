@@ -8,6 +8,7 @@ import linking from './components/LinkingConfig';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Search from './components/Home/Search';
+import DProfile from './screens/DProfile';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ export default function Entry() {
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
             <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} />
+            <Stack.Screen name="Dprofile" component={DProfile} options={{ headerShown: false }} />
           </Stack.Navigator>
           {/* <StatusBar style="auto" /> */}
         </NavigationContainer>

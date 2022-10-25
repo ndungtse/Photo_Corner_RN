@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { usePosts } from '../../contexts/PostContext';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 const Post = ({post}) => {
     const user = useSelector(state => state.user.currentUser)
@@ -23,6 +24,7 @@ const Post = ({post}) => {
     const [showComments, setShowComments] = React.useState(false);
     const [comment, setComment] = React.useState("");
 
+    const navigation = useNavigation();
     const timeFromNow = moment(postData?.date).fromNow();
 
     const handlePoster = async(id)=> {
@@ -104,61 +106,88 @@ const Post = ({post}) => {
 	} , [likesData]);
 
   return (
-    <>
-    {poster && (
-    <View style={[styles.post, tw`bg-slate-100 rounded-xl`]}>
-        <View style={tw`flex px-2 flex-row items-center justify-between`}>
-            <View style={tw`flex-row items-center`}>
-                <View style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}>
-                    <Image style={{ width: '100%', height: '100%', borderRadius: 100 }} source={{uri: poster?.profile}} />
-                </View>
-                <View style={tw`flex ml-3 flex-col`}>
-                    <Text style={tw`font-semibold`}>{poster.username}</Text>
-                    <Text>{timeFromNow}</Text>
-                </View>
-            </View>
-            <Entypo name="dots-three-vertical" size={24} color="black" />
-        </View>
-        <View style={tw`flex px-1 flex-col mt-3`}>
-          <Text style={tw`px-1`}>{postData.caption}</Text>
-          <Image style={tw`w-full h-[100]`}
-            source={{uri: postData.image_url}} />
-        </View>
-        <View style={tw`mt-3 flex-row items-center justify-between px-3`}>
-            <View style={tw`flex-row`}>
-                <Pressable onPress={handleLike} >
-                    {liked ? (
-                    <AntDesign name="heart" size={20} color="red" />
-                     ) : (
-                        <AntDesign name="hearto" size={20} color="black" />
-                     )}
-                </Pressable>
-                <Text> {post.likes} </Text>
-                <Pressable>
-                    <FontAwesome style={tw`ml-2`} name="comment" size={20} color="black" />
-                </Pressable>
-                <Text> {postData.comments} </Text>
-                {/* <Pressable>
+		<>
+			{poster && (
+				<View style={[styles.post, tw`bg-slate-100 rounded-xl`]}>
+					<View style={tw`flex px-2 flex-row items-center justify-between`}>
+						<Pressable
+							onPress={() =>
+								postData.user === user._id ?navigation.navigate("Profile"):navigation.navigate("Dprofile", { id: postData.user })
+							}
+							style={tw`flex-row items-center`}
+						>
+							<View
+								style={tw`h-[13] w-[13] border-2 border-blue-500 rounded-full`}
+							>
+								<Image
+									style={{ width: "100%", height: "100%", borderRadius: 100 }}
+									source={{ uri: poster?.profile }}
+								/>
+							</View>
+							<View style={tw`flex ml-3 flex-col`}>
+								<Text style={tw`font-semibold`}>{poster.username}</Text>
+								<Text>{timeFromNow}</Text>
+							</View>
+						</Pressable>
+						<Entypo name="dots-three-vertical" size={24} color="black" />
+					</View>
+					<View style={tw`flex px-1 flex-col mt-3`}>
+						<Text style={tw`px-1`}>{postData.caption}</Text>
+						<Image
+							style={tw`w-full h-[100]`}
+							source={{ uri: postData.image_url }}
+						/>
+					</View>
+					<View style={tw`mt-3 flex-row items-center justify-between px-3`}>
+						<View style={tw`flex-row`}>
+							<Pressable onPress={handleLike}>
+								{liked ? (
+									<AntDesign name="heart" size={20} color="red" />
+								) : (
+									<AntDesign name="hearto" size={20} color="black" />
+								)}
+							</Pressable>
+							<Text> {post.likes} </Text>
+							<Pressable>
+								<FontAwesome
+									style={tw`ml-2`}
+									name="comment"
+									size={20}
+									color="black"
+								/>
+							</Pressable>
+							<Text> {postData.comments} </Text>
+							{/* <Pressable>
                     <FontAwesome style={tw`ml-2`} name="share" size={20} color="black" />
                 </Pressable> */}
-            </View>
-            <FontAwesome name="bookmark" size={20} color="black" />
-        </View>
-        <View style={tw`flex-row items-center w-full justify-between px-2`}>
-            <KeyboardAvoidingView style={tw`flex-row items-center w-11/12`}
-             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            >
-                <TextInput onChangeText={(comment) => setComment(comment)}
-                onSubmitEditing={handleComment}
-                style={styles.input} value={comment} placeholder="Add a comment..." />
-            </KeyboardAvoidingView>
-            <MaterialIcons onPress={handleComment}
-            style={tw`mt-3`} name="send" size={24} color="black" />
-        </View>
-    </View>
-    )}
-    </>
-  )
+						</View>
+						<FontAwesome name="bookmark" size={20} color="black" />
+					</View>
+					<View style={tw`flex-row items-center w-full justify-between px-2`}>
+						<KeyboardAvoidingView
+							style={tw`flex-row items-center w-11/12`}
+							behavior={Platform.OS === "ios" ? "padding" : "height"}
+						>
+							<TextInput
+								onChangeText={(comment) => setComment(comment)}
+								onSubmitEditing={handleComment}
+								style={styles.input}
+								value={comment}
+								placeholder="Add a comment..."
+							/>
+						</KeyboardAvoidingView>
+						<MaterialIcons
+							onPress={handleComment}
+							style={tw`mt-3`}
+							name="send"
+							size={24}
+							color="black"
+						/>
+					</View>
+				</View>
+			)}
+		</>
+	);
 }
 
 export default Post

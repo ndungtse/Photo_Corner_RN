@@ -75,7 +75,7 @@ const BottomTabNavigator = () => {
 					options={() => ({
 						title: "Explore",
 						tabBarIcon: ({color}) => <FontAwesome5 name="wpexplorer" style={tw`text-2xl`} color={color} />,
-						// headerShown: false,
+						headerShown: false,
 					})}
 				/>
 				<BottomTab.Screen

@@ -58,7 +58,7 @@ const Home = () => {
               setShowSearch(true)}} >
               <FontAwesome name='search' color='blue' style={tw`text-xl rounded-xl px-2 py-1`} />
             </Pressable>
-            {showSearch && <KeyboardAvoidingView style={tw`w-10/12 flex-row border-l-[0.2] border-black`}>
+            {showSearch && <KeyboardAvoidingView style={tw`w-10/12 flex-row `}>
               <TextInput value={query}
               onChangeText={text => setQuery(text)} onSubmitEditing={submitSearch}
                autoFocus ref={inputRef} placeholder='Search' style={tw`text-sm w-full px-2`} />
@@ -70,7 +70,7 @@ const Home = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}
          style={tw`h-[85%] w-full flex flex-col px-3`}>
-        <Stories />
+        {/* <Stories /> */}
         <View style={[tw`flex-row mt-3 items-center mx-auto w-full justify-center`]}>
           <Image style={tw`h-10 w-10 rounded-full border-2 border-blue-400`} source={{uri: user.profile}} />
           <TouchableOpacity onPress={()=> setShowForm(true)}
