@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 const MessageContext = React.createContext();
 
-const socket = io.connect("https://chatserver.cyclic.app/");
+const socket = io.connect("https://zamuka-chat.onrender.com");
 
 export function useMessage() {
   return useContext(MessageContext);
@@ -24,7 +24,7 @@ export function MessageProvider({ children }) {
   };
 
   const getRelMessages = async (room) => {
-    const res = await fetch("https://zamuka.herokuapp.com/hidden/messages");
+    const res = await fetch("https://zamuka.onrender.com/hidden/messages");
     const messages = await res.json();
     const relMess = messages.filter((m) => m.room === room || m.room1 === room);
     setRelMessages(relMess);
