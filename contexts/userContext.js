@@ -15,7 +15,7 @@ export function UserProvider({ children }) {
 	const [following, setFollowing] = useState([]);
 
   const getUsers = async() => {
-    const res = await fetch("https://photocorner33.herokuapp.com/user/all",{
+    const res = await fetch("https://photocorner33.onrender.com/user/all",{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export function UserProvider({ children }) {
   };
 
   const getSuggestedUsers = async() => {
-    const res = await fetch("https://photocorner33.herokuapp.com/user/suggestedUsers",{
+    const res = await fetch("https://photocorner33.onrender.com/user/suggestedUsers",{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export function UserProvider({ children }) {
 
   const getFollowingData = async () => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/user/getFollowingData`,
+			`https://photocorner33.onrender.com/user/getFollowingData`,
 			{
 				method: "GET",
 				headers: {
@@ -57,7 +57,7 @@ export function UserProvider({ children }) {
   const updatePhoto = async(datas) => {
     console.log(datas);
     try {
-      const res = await fetch("https://photocorner33.herokuapp.com/user/updateProfilePicture",{
+      const res = await fetch("https://photocorner33.onrender.com/user/updateProfilePicture",{
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export function UserProvider({ children }) {
   const updateCoverPhoto = async(datas) => {
     console.log(datas);
     try {
-      const res = await fetch("https://photocorner33.herokuapp.com/user/updateCover",{
+      const res = await fetch("https://photocorner33.onrender.com/user/updateCover",{
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export function UserProvider({ children }) {
 
   const follow = async (data) => {
 		const res = await fetch(
-			`http://photocorner33.herokuapp.com/user/followUser/${data._id}`,
+			`https://photocorner33.onrender.com/user/followUser/${data._id}`,
 			{
 				method: "POST",
 				headers: {
@@ -116,7 +116,7 @@ export function UserProvider({ children }) {
 
 	const unfollow = async (data) => {
 		const res = await fetch(
-			`http://photocorner33.herokuapp.com/user/unfollow/${data._id}`,
+			`https://photocorner33.onrender.com/user/unfollow/${data._id}`,
 			{
 				method: "POST",
 				headers: {

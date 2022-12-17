@@ -14,7 +14,7 @@ export const useAuth = () => {
 };
 
 export const api = axios.create({
-	baseURL: "https://photocorner33.herokuapp.com",
+	baseURL: "https://photocorner33.onrender.com",
 	headers: {
 		"Content-Type": "application/json",
 	},

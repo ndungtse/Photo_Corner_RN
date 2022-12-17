@@ -16,7 +16,7 @@ export const PostProvider = ({ children }) => {
 
 	const getPosts = async () => {
 		const res = await fetch(
-			"https://photocorner33.herokuapp.com/post/allPosts",
+			"https://photocorner33.onrender.com/post/allPosts",
 			{
 				method: "GET",
 
@@ -33,7 +33,7 @@ export const PostProvider = ({ children }) => {
 
 	const newPost = async (caption, imageStr) => {
 		const res = await fetch(
-			"https://photocorner33.herokuapp.com/post/newPost",
+			"https://photocorner33.onrender.com/post/newPost",
 			{
 				method: "POST",
 				headers: {
@@ -57,7 +57,7 @@ export const PostProvider = ({ children }) => {
 
 	const deletePost = async (id) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/delete/${id}`,
+			`https://photocorner33.onrender.com/post/delete/${id}`,
 			{
 				method: "DELETE",
 				headers: {
@@ -74,7 +74,7 @@ export const PostProvider = ({ children }) => {
 
 	const commentOnPost = async (postID, comment) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/commentOnPost/${postID}`,
+			`https://photocorner33.onrender.com/post/commentOnPost/${postID}`,
 			{
 				method: "POST",
 				headers: {
@@ -94,7 +94,7 @@ export const PostProvider = ({ children }) => {
 
 	const likePost = async (postID) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/like/${postID}`,
+			`https://photocorner33.onrender.com/post/like/${postID}`,
 			{
 				method: "GET",
 				headers: {
@@ -111,7 +111,7 @@ export const PostProvider = ({ children }) => {
 	const getCommentsByPost = async (postID) => {
 
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/getCommentsByPosts/${postID}`,
+			`https://photocorner33.onrender.com/post/getCommentsByPosts/${postID}`,
 			{
 				method: "GET",
 				headers: {
@@ -127,7 +127,7 @@ export const PostProvider = ({ children }) => {
 	const getLikesDataByPost = async (postID) => {
 		try {
 			const res = await fetch(
-				`https://photocorner33.herokuapp.com/post/getLikesDataByPost/${postID}`,
+				`https://photocorner33.onrender.com/post/getLikesDataByPost/${postID}`,
 				{
 					method: "GET",
 					headers: {
@@ -147,7 +147,7 @@ export const PostProvider = ({ children }) => {
 	const getLikesCountByPost = async (postID) => {
 
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/getLikeCountByPost/${postID}`,
+			`https://photocorner33.onrender.com/post/getLikeCountByPost/${postID}`,
 			{
 				method: "GET",
 				headers: {
@@ -163,7 +163,7 @@ export const PostProvider = ({ children }) => {
 
 	const unlikePost = async (postID) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/unlikePost/${postID}`,
+			`https://photocorner33.onrender.com/post/unlikePost/${postID}`,
 			{
 				method: "GET",
 				headers: {
@@ -179,7 +179,7 @@ export const PostProvider = ({ children }) => {
 
 	const updateCommentOnPost = async (postID, commentID, comment) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/updateCommentOnPost/${postID}`,
+			`https://photocorner33.onrender.com/post/updateCommentOnPost/${postID}`,
 			{
 				method: "PUT",
 				headers: {
@@ -199,7 +199,7 @@ export const PostProvider = ({ children }) => {
 
 	const updatePost = async (postID, imageStr, caption) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/updatePost/${postID}`,
+			`https://photocorner33.onrender.com/post/updatePost/${postID}`,
 			{
 				method: "PATCH",
 				headers: {
@@ -220,7 +220,7 @@ export const PostProvider = ({ children }) => {
 
 	const getPostsByFollowing = async () => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/getPostsByFollowing`,
+			`https://photocorner33.onrender.com/post/getPostsByFollowing`,
 			{
 				method: "GET",
 				headers: {
@@ -237,7 +237,7 @@ export const PostProvider = ({ children }) => {
 
 	const getAllPostDataById = async (postID) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/getAllPostData/${postID}`, {
+			`https://photocorner33.onrender.com/post/getAllPostData/${postID}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -251,7 +251,7 @@ export const PostProvider = ({ children }) => {
 
 	const deleteComment = async (postID, commentID) => {
 		const res = await fetch(
-			`https://photocorner33.herokuapp.com/post/deleteComment/${postID}`,
+			`https://photocorner33.onrender.com/post/deleteComment/${postID}`,
 			{
 				method: "DELETE",
 				headers: {
@@ -271,7 +271,7 @@ export const PostProvider = ({ children }) => {
 	const getPostsByUser = async (userID) => {
 		try {
 			const res = await fetch(
-				`https://photocorner33.herokuapp.com/post/getPostByPosterID/${userID}`,
+				`https://photocorner33.onrender.com/post/getPostByPosterID/${userID}`,
 				{
 					method: "GET",
 					headers: {
